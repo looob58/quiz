@@ -7,77 +7,88 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Frame 1: Welcome Screen -->
     <div id="frame-1" class="quiz-frame">
-        <div class="content">
-            <div class="welcome-screen">
-                <h1>Welcome to the Quiz!</h1>
-                <button id="start-button">Start</button>
-            </div>
-        </div>
+        <button id="start-button" class="centered-button">Start Quiz</button>
     </div>
+
+    <!-- Frame 2: Question 1 -->
     <div id="frame-2" class="quiz-frame">
-        <div class="content">
-            <div class="question-top">Question 1</div>
-            <div class="swipe-container">
-                <div id="left-portion-2" class="swipe-option">Left</div>
-                <div id="right-portion-2" class="swipe-option">Right</div>
-            </div>
-            <div id="timer-container-2" class="timer">5</div>
+        <div class="top-portion">
+            <h2>Question 1</h2>
         </div>
+        <div class="bottom-portion">
+            <div id="swipe-left-2" class="swipe-option left-option">Swipe Left</div>
+            <div id="swipe-right-2" class="swipe-option right-option">Swipe Right</div>
+        </div>
+        <div id="timer" class="timer"></div>
     </div>
+
+    <!-- Frame 3: Question 2 (Decides Result 1 or 2) -->
     <div id="frame-3" class="quiz-frame">
-        <div class="content">
-            <div class="question-top">Question 2</div>
-            <div class="swipe-container">
-                <div id="left-portion-3" class="swipe-option">Left</div>
-                <div id="right-portion-3" class="swipe-option">Right</div>
-            </div>
-            <div id="timer-container-3" class="timer">5</div>
+        <div class="top-portion">
+            <h2>Question 2</h2>
         </div>
+        <div class="bottom-portion">
+            <div id="swipe-left-3" class="swipe-option left-option">Swipe Left</div>
+            <div id="swipe-right-3" class="swipe-option right-option">Swipe Right</div>
+        </div>
+        <div id="timer" class="timer"></div>
     </div>
+
+    <!-- Frame 4: Question 3 -->
     <div id="frame-4" class="quiz-frame">
-        <div class="content">
-            <div class="question-top">Question 3</div>
-            <div class="swipe-container">
-                <div id="left-portion-4" class="swipe-option">Left</div>
-                <div id="right-portion-4" class="swipe-option">Right</div>
-            </div>
-            <div id="timer-container-4" class="timer">5</div>
+        <div class="top-portion">
+            <h2>Question 3</h2>
         </div>
+        <div class="bottom-portion">
+            <div id="swipe-left-4" class="swipe-option left-option">Swipe Left</div>
+            <div id="swipe-right-4" class="swipe-option right-option">Swipe Right</div>
+        </div>
+        <div id="timer" class="timer"></div>
     </div>
+
+    <!-- Frame 5: Question 4 (Decides Result 3 or 4) -->
     <div id="frame-5" class="quiz-frame">
-        <div class="content">
-            <div class="question-top">Question 4</div>
-            <div class="swipe-container">
-                <div id="left-portion-5" class="swipe-option">Left</div>
-                <div id="right-portion-5" class="swipe-option">Right</div>
-            </div>
-            <div id="timer-container-5" class="timer">5</div>
+        <div class="top-portion">
+            <h2>Question 4</h2>
         </div>
+        <div class="bottom-portion">
+            <div id="swipe-left-5" class="swipe-option left-option">Swipe Left</div>
+            <div id="swipe-right-5" class="swipe-option right-option">Swipe Right</div>
+        </div>
+        <div id="timer" class="timer"></div>
     </div>
+
+    <!-- Frame 6: Question 5 -->
     <div id="frame-6" class="quiz-frame">
-        <div class="content">
-            <div class="question-top">Question 5</div>
-            <div class="swipe-container">
-                <div id="left-portion-6" class="swipe-option">Left</div>
-                <div id="right-portion-6" class="swipe-option">Right</div>
-            </div>
-            <div id="timer-container-6" class="timer">5</div>
+        <div class="top-portion">
+            <h2>Question 5</h2>
         </div>
+        <div class="bottom-portion">
+            <div id="swipe-left-6" class="swipe-option left-option">Swipe Left</div>
+            <div id="swipe-right-6" class="swipe-option right-option">Swipe Right</div>
+        </div>
+        <div id="timer" class="timer"></div>
     </div>
+
+    <!-- Frame 7: Analyzing Screen -->
     <div id="frame-7" class="quiz-frame">
-        <div class="content">
-            <div class="analyzing-screen">Analyzing...</div>
+        <div class="top-portion">
+            <h2>Analyzing...</h2>
         </div>
+        <div id="timer" class="timer"></div>
     </div>
+
+    <!-- Frame 8: Result Screen -->
     <div id="frame-8" class="quiz-frame">
-        <div class="content">
-            <div class="result-screen">
-                <h1 id="result-text">Result will be displayed here</h1>
-                <button id="restart-button">Restart</button>
-            </div>
+        <div class="top-portion">
+            <div id="result-text">Your result will be displayed here.</div>
         </div>
+        <button id="restart-button" class="centered-button">Restart</button>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
