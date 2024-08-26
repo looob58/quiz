@@ -56,22 +56,21 @@ function handleSwipe(answer) {
     } else if (currentFrame === 7) {
         currentFrame++;
     } else if (currentFrame === 8) {
-        currentFrame = 1;
+        // Display result based on answers
+        document.getElementById('result-text').textContent = getResult();
+        startReturnToStartTimer(); // Start timer to return to frame 1
     }
     showFrame(currentFrame);
-    if (currentFrame === 8) {
-        startReturnToStartTimer();
-    }
 }
 
 function getResult() {
-    if (answerQ2 === 'result1' && answerQ4 === 'result3') {
+    if (answerQ2 === 'left' && answerQ4 === 'left') {
         return 'Result A'; // Replace with actual result description
-    } else if (answerQ2 === 'result1' && answerQ4 === 'result4') {
+    } else if (answerQ2 === 'left' && answerQ4 === 'right') {
         return 'Result B'; // Replace with actual result description
-    } else if (answerQ2 === 'result2' && answerQ4 === 'result3') {
+    } else if (answerQ2 === 'right' && answerQ4 === 'left') {
         return 'Result C'; // Replace with actual result description
-    } else if (answerQ2 === 'result2' && answerQ4 === 'result4') {
+    } else if (answerQ2 === 'right' && answerQ4 === 'right') {
         return 'Result D'; // Replace with actual result description
     }
 }
@@ -89,36 +88,42 @@ document.getElementById('start-button').addEventListener('click', () => {
 
 document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(1);
+    answerQ2 = '';
+    answerQ4 = '';
 });
 
 const swipeHandler = (direction) => {
     handleSwipe(direction);
 };
 
-document.getElementById('left-portion').addEventListener('click', () => swipeHandler('left'));
-document.getElementById('right-portion').addEventListener('click', () => swipeHandler('right'));
-
-const handleSwipeEvent = (event) => {
-    const swipeThreshold = 50; // Minimum swipe distance in pixels
-    let startX = event.touches[0].clientX;
-    let startY = event.touches[0].clientY;
-
-    const handleMove = (moveEvent) => {
-        const distanceX = moveEvent.touches[0].clientX - startX;
-        const distanceY = moveEvent.touches[0].clientY - startY;
-
-        if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > swipeThreshold) {
-            if (distanceX > 0) {
-                swipeHandler('right');
-            } else {
-                swipeHandler('left');
-            }
-            document.removeEventListener('touchmove', handleMove);
+const swipeOptions = document.querySelectorAll('.swipe-option');
+swipeOptions.forEach(option => {
+    option.addEventListener('click', (event) => {
+        if (event.target.id === 'left-portion') {
+            swipeHandler('left');
+        } else if (event.target.id === 'right-portion') {
+            swipeHandler('right');
         }
-    };
+    });
 
-    document.addEventListener('touchmove', handleMove);
-};
+    option.addEventListener('touchstart', (event) => {
+        const startX = event.touches[0].clientX;
+        const startY = event.touches[0].clientY;
 
-document.getElementById('left-portion').addEventListener('touchstart', handleSwipeEvent);
-document.getElementById('right-portion').addEventListener('touchstart', handleSwipeEvent);
+        const handleMove = (moveEvent) => {
+            const distanceX = moveEvent.touches[0].clientX - startX;
+            const distanceY = moveEvent.touches[0].clientY - startY;
+
+            if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > 50) { // Adjust swipe threshold as needed
+                if (distanceX > 0) {
+                    swipeHandler('right');
+                } else {
+                    swipeHandler('left');
+                }
+                document.removeEventListener('touchmove', handleMove);
+            }
+        };
+
+        document.addEventListener('touchmove', handleMove);
+    });
+});
