@@ -38,8 +38,7 @@ function handleSwipeRight() {
 function analyzeResults() {
     showFrame(7);
     setTimeout(() => {
-        showFrame(8);
-        document.getElementById('result-text').textContent = `Your Result: ${result1} and ${result2}`;
+       showResult() ;
     }, 2000);
 }
 function startTimer(frameNumber) {
