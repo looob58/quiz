@@ -1,7 +1,9 @@
 let currentFrame = 1;
 let selectedAnswers = {};
 let timer;
+let timerElement = document.getElementById('timer');
 
+// Function to show a specific frame
 function showFrame(frameNumber) {
     clearTimer();
     document.querySelectorAll('.quiz-frame').forEach(frame => {
@@ -10,41 +12,44 @@ function showFrame(frameNumber) {
     document.getElementById(`frame-${frameNumber}`).style.display = "flex";
     currentFrame = frameNumber;
     startTimer(frameNumber);
-
-    
 }
 
+// Function to handle swipe left actions
 function handleSwipeLeft() {
     if (currentFrame === 3) selectedAnswers.question2 = "left";
     if (currentFrame === 5) selectedAnswers.question4 = "left";
     
-     if (currentFrame === 6) {
+    if (currentFrame === 6) {
         analyzeResults();
     } else {
-      showFrame(currentFrame + 1);
+        showFrame(currentFrame + 1);
     }
 }
 
+// Function to handle swipe right actions
 function handleSwipeRight() {
     if (currentFrame === 3) selectedAnswers.question2 = "right";
     if (currentFrame === 5) selectedAnswers.question4 = "right";
 
-     if (currentFrame === 6) {
+    if (currentFrame === 6) {
         analyzeResults();
     } else {
-      showFrame(currentFrame + 1);
+        showFrame(currentFrame + 1);
     }
 }
+
+// Function to analyze results and show the result frame
 function analyzeResults() {
     showFrame(7);
     setTimeout(() => {
-       showResult() ;
-    }, 2000);
+        showResult();
+    }, 2000);  // 2 seconds delay before showing the result
 }
+
+// Function to start the timer for each question
 function startTimer(frameNumber) {
     if (frameNumber >= 2 && frameNumber <= 6) {
         let timeLeft = 5;
-        const timerElement = document.getElementById('timer');
         timerElement.textContent = timeLeft;
         timer = setInterval(() => {
             timeLeft--;
@@ -54,13 +59,18 @@ function startTimer(frameNumber) {
                 showFrame(currentFrame + 1);
             }
         }, 1000);
+    } else {
+        timerElement.textContent = ''; // Clear timer for frames that don't have a timer
     }
 }
 
+// Function to clear the timer
 function clearTimer() {
     clearInterval(timer);
+    timerElement.textContent = ''; // Clear timer display
 }
 
+// Event listeners for buttons and swipe actions
 document.getElementById('start-button').addEventListener('click', () => {
     showFrame(2);
 });
@@ -80,11 +90,11 @@ document.getElementById('swipe-right-5').addEventListener('click', handleSwipeRi
 document.getElementById('swipe-left-6').addEventListener('click', handleSwipeLeft);
 document.getElementById('swipe-right-6').addEventListener('click', handleSwipeRight);
 
-
 document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(1);
 });
 
+// Function to show result based on the answers
 function showResult() {
     const resultText = document.getElementById('result-text');
     if (selectedAnswers.question2 === 'left' && selectedAnswers.question4 === 'left') {
@@ -100,4 +110,5 @@ function showResult() {
     }, 120000);  // 2 minutes timer to go back to the main page
 }
 
+// Initialize the quiz by showing the welcome screen
 showFrame(1);
