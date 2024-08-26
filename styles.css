@@ -1,108 +1,47 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f0f0f0;
-}
-
-.quiz-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
     height: 100vh;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 
-.content {
+#quiz-container {
+    width: 300px;
+    height: 400px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.quiz-card {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Frame Background Colors */
-#frame-1 .content {
-    background-color: #ffcccb; /* Light red */
-}
-
-#frame-2 .content {
-    background-color: #add8e6; /* Light blue */
-}
-
-#frame-3 .content {
-    background-color: #90ee90; /* Light green */
-}
-
-#frame-4 .content {
-    background-color: #f0e68c; /* Khaki */
-}
-
-#frame-5 .content {
-    background-color: #ffb6c1; /* Light pink */
-}
-
-#frame-6 .content {
-    background-color: #e6e6fa; /* Lavender */
-}
-
-#frame-7 .content {
-    background-color: #ff6347; /* Tomato */
-}
-
-#frame-8 .content {
-    background-color: #d3d3d3; /* Light gray */
-}
-
-.question-top {
-    width: 100%;
-    height: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    background-color: #dcdcdc; /* Gainsboro */
-    text-align: center;
-}
-
-.swipe-container {
-    width: 100%;
-    height: 67%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.swipe-option {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    background-color: #87ceeb; /* Sky blue */
-    cursor: pointer;
-}
-
-#timer-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     position: absolute;
-    bottom: 0;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background-color: #000;
-    color: #fff;
-    font-size: 1.5rem;
-    padding: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    user-select: none;
+    transition: transform 0.5s, opacity 0.5s, box-shadow 0.3s;
+}
+
+.quiz-card:nth-child(1) {
+    z-index: 2;
+}
+
+.quiz-card:nth-child(2) {
+    z-index: 1;
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+.quiz-card.swiping {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }

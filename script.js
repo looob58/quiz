@@ -1,83 +1,57 @@
-let currentFrame = 1;
-let answers = [];
+let startX, currentCard, nextCard;
 
-document.addEventListener("DOMContentLoaded", function() {
-    showFrame(currentFrame);
-
-    document.getElementById("start-button").addEventListener("click", function() {
-        currentFrame++;
-        showFrame(currentFrame);
-    });
-
-    document.getElementById("restart-button").addEventListener("click", function() {
-        currentFrame = 1;
-        answers = [];
-        showFrame(currentFrame);
-    });
-
-    document.querySelectorAll(".swipe-option").forEach(option => {
-        option.addEventListener("click", handleSwipe);
-    });
+document.querySelectorAll('.quiz-card').forEach(card => {
+    card.addEventListener('touchstart', handleTouchStart, false);
+    card.addEventListener('touchmove', handleTouchMove, false);
+    card.addEventListener('touchend', handleTouchEnd, false);
 });
 
-function showFrame(frameNumber) {
-    document.querySelectorAll(".quiz-frame").forEach(frame => {
-        frame.style.display = "none";
-    });
-    document.getElementById(`frame-${frameNumber}`).style.display = "flex";
-    if (frameNumber >= 2 && frameNumber <= 6) {
-        startTimer();
+function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+    currentCard = event.currentTarget;
+    nextCard = currentCard.nextElementSibling;
+}
+
+function handleTouchMove(event) {
+    let touchX = event.touches[0].clientX;
+    let moveX = touchX - startX;
+
+    currentCard.classList.add('swiping');
+    currentCard.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.1}deg)`;
+
+    if (nextCard) {
+        nextCard.style.transform = `scale(${1 - Math.abs(moveX) / 1000})`;
+        nextCard.style.opacity = `${0.8 + Math.abs(moveX) / 1000}`;
     }
 }
 
-function handleSwipe(event) {
-    let choice = event.target.id.includes("left") ? "left" : "right";
-    answers.push(choice);
+function handleTouchEnd(event) {
+    let moveX = event.changedTouches[0].clientX - startX;
 
-    if (currentFrame === 3 || currentFrame === 5) {
-        currentFrame++;
-    } else if (currentFrame === 6) {
-        currentFrame = 7;
-        setTimeout(() => {
-            displayResult();
-        }, 2000); // Simulate analyzing time
-    } else {
-        currentFrame++;
-    }
-    showFrame(currentFrame);
-}
+    if (Math.abs(moveX) > 100) {
+        currentCard.style.transform = `translateX(${moveX > 0 ? 500 : -500}px) rotate(${moveX * 0.1}deg)`;
+        currentCard.style.opacity = 0;
+        currentCard.addEventListener('transitionend', () => {
+            currentCard.remove();
+        });
 
-function startTimer() {
-    let timerElement = document.querySelector(`#timer-container-${currentFrame}`);
-    let timeLeft = 5;
+        // Handle the answer here
+        let answer = currentCard.getAttribute('data-answer');
+        console.log('User answered:', answer);
 
-    let timerInterval = setInterval(function() {
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            handleSwipe({ target: { id: "right-portion" } }); // Auto-select right if time runs out
+        // Move the next card up
+        if (nextCard) {
+            nextCard.style.zIndex = 2;
+            nextCard.style.transform = 'scale(1)';
+            nextCard.style.opacity = '1';
         }
-        timerElement.textContent = timeLeft;
-        timeLeft--;
-    }, 1000);
-}
-
-function displayResult() {
-    let result = determineResult();
-    document.getElementById("result-text").textContent = `Your result is: ${result}`;
-    currentFrame = 8;
-    showFrame(currentFrame);
-}
-
-function determineResult() {
-    let result;
-    if (answers[1] === "left" && answers[3] === "left") {
-        result = "Result 1";
-    } else if (answers[1] === "right" && answers[3] === "right") {
-        result = "Result 2";
-    } else if (answers[1] === "left" && answers[3] === "right") {
-        result = "Result 3";
     } else {
-        result = "Result 4";
+        currentCard.classList.remove('swiping');
+        currentCard.style.transform = 'translateX(0) rotate(0)';
+
+        if (nextCard) {
+            nextCard.style.transform = 'scale(0.95)';
+            nextCard.style.opacity = '0.8';
+        }
     }
-    return result;
 }
