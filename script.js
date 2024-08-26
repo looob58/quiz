@@ -1,110 +1,83 @@
 let currentFrame = 1;
-let timerInterval;
-let countdownSeconds = 5; // Time for each question in seconds
-let answerQ2 = '';
-let answerQ4 = '';
-let returnToStartTimeout;
+let answers = [];
+
+document.addEventListener("DOMContentLoaded", function() {
+    showFrame(currentFrame);
+
+    document.getElementById("start-button").addEventListener("click", function() {
+        currentFrame++;
+        showFrame(currentFrame);
+    });
+
+    document.getElementById("restart-button").addEventListener("click", function() {
+        currentFrame = 1;
+        answers = [];
+        showFrame(currentFrame);
+    });
+
+    document.querySelectorAll(".swipe-option").forEach(option => {
+        option.addEventListener("click", handleSwipe);
+    });
+});
 
 function showFrame(frameNumber) {
-    document.querySelectorAll('.quiz-frame').forEach(frame => {
-        frame.style.display = 'none';
+    document.querySelectorAll(".quiz-frame").forEach(frame => {
+        frame.style.display = "none";
     });
-    document.getElementById(`frame-${frameNumber}`).style.display = 'flex';
+    document.getElementById(`frame-${frameNumber}`).style.display = "flex";
     if (frameNumber >= 2 && frameNumber <= 6) {
         startTimer();
-    } else {
-        stopTimer();
     }
+}
+
+function handleSwipe(event) {
+    let choice = event.target.id.includes("left") ? "left" : "right";
+    answers.push(choice);
+
+    if (currentFrame === 3 || currentFrame === 5) {
+        currentFrame++;
+    } else if (currentFrame === 6) {
+        currentFrame = 7;
+        setTimeout(() => {
+            displayResult();
+        }, 2000); // Simulate analyzing time
+    } else {
+        currentFrame++;
+    }
+    showFrame(currentFrame);
 }
 
 function startTimer() {
-    let timerElement = document.getElementById('timer-container');
-    timerElement.textContent = countdownSeconds; // Start countdown text
-    clearInterval(timerInterval);
-    timerInterval = setInterval(() => {
-        countdownSeconds--;
-        timerElement.textContent = countdownSeconds;
-        if (countdownSeconds <= 0) {
+    let timerElement = document.querySelector(`#timer-container-${currentFrame}`);
+    let timeLeft = 5;
+
+    let timerInterval = setInterval(function() {
+        if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            handleSwipe('timeout'); // Handle timeout if no action is taken
+            handleSwipe({ target: { id: "right-portion" } }); // Auto-select right if time runs out
         }
+        timerElement.textContent = timeLeft;
+        timeLeft--;
     }, 1000);
 }
 
-function stopTimer() {
-    clearInterval(timerInterval);
-    countdownSeconds = 5; // Reset to default countdown seconds
+function displayResult() {
+    let result = determineResult();
+    document.getElementById("result-text").textContent = `Your result is: ${result}`;
+    currentFrame = 8;
+    showFrame(currentFrame);
 }
 
-function handleSwipe(answer) {
-    stopTimer();
-    if (currentFrame === 2) {
-        // Redundant question, just go to next
-        currentFrame++;
-    } else if (currentFrame === 3) {
-        answerQ2 = answer;
-        currentFrame++;
-    } else if (currentFrame === 4) {
-        // Redundant question, just go to next
-        currentFrame++;
-    } else if (currentFrame === 5) {
-        answerQ4 = answer;
-        currentFrame++;
-    } else if (currentFrame === 6) {
-        // Redundant question, just go to next
-        currentFrame++;
-    } else if (currentFrame === 7) {
-        // Analyzing screen, transition to result after analyzing
-        setTimeout(() => {
-            currentFrame++;
-            showFrame(currentFrame);
-        }, 2000); // 2 seconds delay for analyzing
-        return; // Exit function to avoid immediate frame change
-    } else if (currentFrame === 8) {
-        // Display result based on answers
-        document.getElementById('result-text').textContent = getResult();
-        startReturnToStartTimer(); // Start timer to return to frame 1
-        return; // Exit function to avoid immediate frame change
+function determineResult() {
+    let result;
+    if (answers[1] === "left" && answers[3] === "left") {
+        result = "Result 1";
+    } else if (answers[1] === "right" && answers[3] === "right") {
+        result = "Result 2";
+    } else if (answers[1] === "left" && answers[3] === "right") {
+        result = "Result 3";
+    } else {
+        result = "Result 4";
     }
-    showFrame(currentFrame);
+    return result;
 }
-
-function getResult() {
-    if (answerQ2 === 'left' && answerQ4 === 'left') {
-        return 'Result A'; // Replace with actual result description
-    } else if (answerQ2 === 'left' && answerQ4 === 'right') {
-        return 'Result B'; // Replace with actual result description
-    } else if (answerQ2 === 'right' && answerQ4 === 'left') {
-        return 'Result C'; // Replace with actual result description
-    } else if (answerQ2 === 'right' && answerQ4 === 'right') {
-        return 'Result D'; // Replace with actual result description
-    }
-}
-
-function startReturnToStartTimer() {
-    clearTimeout(returnToStartTimeout);
-    returnToStartTimeout = setTimeout(() => {
-        currentFrame = 1;
-        showFrame(currentFrame);
-    }, 180000); // 3 minutes in milliseconds
-}
-
-document.getElementById('start-button').addEventListener('click', () => {
-    currentFrame = 2;
-    showFrame(currentFrame);
-});
-
-document.getElementById('restart-button').addEventListener('click', () => {
-    currentFrame = 1;
-    showFrame(currentFrame);
-});
-
-document.querySelectorAll('.swipe-option').forEach(option => {
-    option.addEventListener('click', (e) => {
-        const answer = e.target.id === 'left-portion' ? 'left' : 'right';
-        handleSwipe(answer);
-    });
-});
-
-document.addEventListener('swiped-left', () => handleSwipe('left'));
-document.addEventListener('swiped-right', () => handleSwipe('right'));
