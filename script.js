@@ -1,5 +1,6 @@
 let currentFrame = 1;
 let result1, result2;
+let timer;
 let returnToStartTimeout;
 
 function showFrame(frameNumber) {
@@ -7,6 +8,38 @@ function showFrame(frameNumber) {
         frame.style.display = 'none';
     });
     document.getElementById(`frame-${frameNumber}`).style.display = 'flex';
+
+    // Reset and start timer if applicable
+    if (frameNumber === 2 || frameNumber === 3) {
+        startTimer(5);
+    }
+}
+
+function startTimer(seconds) {
+    let timeLeft = seconds;
+    document.getElementById('timer').textContent = timeLeft;
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').textContent = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            moveToNextFrame();
+        }
+    }, 1000);
+}
+
+function moveToNextFrame() {
+    currentFrame++;
+    if (currentFrame === 4) {
+        analyzeResults();
+    } else if (currentFrame === 5) {
+        startReturnToStartTimer();
+    } else {
+        showFrame(currentFrame);
+    }
 }
 
 document.querySelectorAll('.swipe-option').forEach(option => {
@@ -16,26 +49,20 @@ document.querySelectorAll('.swipe-option').forEach(option => {
 function handleSwipe(event) {
     let answer = event.currentTarget.getAttribute('data-answer');
     
-    if (currentFrame === 3) {
+    if (currentFrame === 2) {
         result1 = answer;
-    } else if (currentFrame === 5) {
+    } else if (currentFrame === 3) {
         result2 = answer;
     }
     
-    currentFrame++;
-    if (currentFrame === 7) {
-        analyzeResults();
-    } else {
-        showFrame(currentFrame);
-    }
+    moveToNextFrame();
 }
 
 function analyzeResults() {
-    showFrame(7);
+    showFrame(4);
     setTimeout(() => {
-        showFrame(8);
+        showFrame(5);
         document.getElementById('result-text').textContent = `Your Result: ${result1} and ${result2}`;
-        startReturnToStartTimer();
     }, 2000);
 }
 
