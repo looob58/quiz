@@ -1,130 +1,81 @@
-html, body {
+body, html {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-}
-
-body {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f0f0f0;
+    background-color: #f4f4f4;
 }
 
 .quiz-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
     display: none;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.content {
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
-/* Frame Background Colors */
-#frame-1 .content {
-    background-color: #ffcccb; /* Light red */
-}
-
-#frame-2 .content {
-    background-color: #add8e6; /* Light blue */
-}
-
-#frame-3 .content {
-    background-color: #90ee90; /* Light green */
-}
-
-#frame-4 .content {
-    background-color: #f0e68c; /* Khaki */
-}
-
-#frame-5 .content {
-    background-color: #ffb6c1; /* Light pink */
-}
-
-#frame-6 .content {
-    background-color: #e6e6fa; /* Lavender */
-}
-
-#frame-7 .content {
-    background-color: #ff6347; /* Tomato */
-}
-
-#frame-8 .content {
-    background-color: #d3d3d3; /* Light gray */
-}
-
-.question-top {
-    width: 100%;
+.top-portion {
     height: 33%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    background-color: #dcdcdc; /* Gainsboro */
-    text-align: center;
+    background-color: #333;
+    color: #fff;
 }
 
-.swipe-container {
-    width: 100%;
+.bottom-portion {
     height: 67%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .swipe-option {
-    width: 50%;
+    width: 48%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    background-color: #87ceeb; /* Sky blue */
+    color: #fff;
+    font-size: 24px;
     cursor: pointer;
+}
+
+.left-option {
+    background-color: #ff5757;
+}
+
+.right-option {
+    background-color: #57a5ff;
+}
+
+.centered-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .timer {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     width: 100%;
     text-align: center;
+    font-size: 24px;
     background-color: #000;
     color: #fff;
-    font-size: 1.5rem;
-    padding: 10px;
-}
-
-/* Button Styles */
-button {
-    padding: 15px 30px;
-    font-size: 1.5rem;
-    color: #fff;
-    background-color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-/* Specific styles for restart button */
-#restart-button {
-    position: relative;
-    margin-top: 20px;
+    padding: 10px 0;
 }
