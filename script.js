@@ -1,25 +1,41 @@
-let currentFrame = 1;
-let answers = [];
+let timerInterval;
 
-document.addEventListener("DOMContentLoaded", function() {
-    showFrame(currentFrame);
+function startTimer(seconds, callback) {
+    let remainingTime = seconds;
+    updateTimerDisplay(remainingTime);
 
-    document.getElementById("start-button").addEventListener("click", function() {
-        currentFrame++;
-        showFrame(currentFrame);
-    });
+    timerInterval = setInterval(() => {
+        remainingTime--;
+        updateTimerDisplay(remainingTime);
 
-    document.getElementById("restart-button").addEventListener("click", function() {
-        currentFrame = 1;
-        answers = [];
-        showFrame(currentFrame);
-    });
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            callback();
+        }
+    }, 1000);
+}
 
-    document.querySelectorAll(".swipe-option").forEach(option => {
-        option.addEventListener("click", handleSwipe);
-    });
-});
+function updateTimerDisplay(time) {
+    const timerElement = document.getElementById('timer');
+    if (timerElement) {
+        timerElement.textContent = `Time Left: ${time}s`;
+    }
+}
 
+function clearTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+}
+
+function handleSwipeOrClick(nextFrame) {
+    clearTimer(); // Clear the timer when a swipe or click happens
+    showFrame(nextFrame);
+    if (nextFrame <= 7) { // Start a timer only if not on the last result frame
+        startTimer(5, () => handleSwipeOrClick(nextFrame + 1));
+    }
+}
 
 function showFrame(frameNumber) {
     // Hide all frames
@@ -33,63 +49,29 @@ function showFrame(frameNumber) {
     // Show the requested frame
     const currentFrame = document.getElementById(`frame-${frameNumber}`);
     if (currentFrame) {
-        currentFrame.style.display = "flex"; // Ensure this is "flex" to work with your CSS
+        currentFrame.style.display = "flex";
     } else {
         console.error(`Frame ${frameNumber} does not exist.`);
     }
-   if (frameNumber >= 2 && frameNumber <= 6) {
-        startTimer();
-    }
 }
 
-function handleSwipe(event) {
-    let choice = event.target.id.includes("left") ? "left" : "right";
-    answers.push(choice);
+// Initialize the first frame and start the timer
+document.addEventListener('DOMContentLoaded', () => {
+    showFrame(1);
 
-    if (currentFrame === 3 || currentFrame === 5) {
-        currentFrame++;
-    } else if (currentFrame === 6) {
-        currentFrame = 7;
-        setTimeout(() => {
-            displayResult();
-        }, 2000); // Simulate analyzing time
-    }else {
-        currentFrame++;
-    }
-    showFrame(currentFrame);
-}
+    // Event listeners for swipe and click (example for two buttons)
+    document.getElementById('swipe-left').addEventListener('click', () => handleSwipeOrClick(2));
+    document.getElementById('swipe-right').addEventListener('click', () => handleSwipeOrClick(3));
+    
+    // Repeat similar event listeners for other buttons or swipe actions
+    // For example:
+    // document.getElementById('swipe-left-2').addEventListener('click', () => handleSwipeOrClick(4));
+    // document.getElementById('swipe-right-2').addEventListener('click', () => handleSwipeOrClick(5));
+});
 
-function startTimer() {
-    let timerElement = document.querySelector(`#timer-container-${currentFrame}`);
-    let timeLeft = 5;
-
-    let timerInterval = setInterval(function() {
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            handleSwipe({ target: { id: "right-portion" } }); // Auto-select right if time runs out
-        }
-        timerElement.textContent = timeLeft;
-        timeLeft--;
-    }, 1000);
-}
-
-function displayResult() {
-    let result = determineResult();
-    document.getElementById("result-text").textContent = `Your result is: ${result}`;
-    currentFrame = 8;
-    showFrame(currentFrame);
-}
-
-function determineResult() {
-    let result;
-    if (answers[1] === "left" && answers[3] === "left") {
-        result = "Result 1";
-    } else if (answers[1] === "right" && answers[3] === "right") {
-        result = "Result 2";
-    } else if (answers[1] === "left" && answers[3] === "right") {
-        result = "Result 3";
-    } else {
-        result = "Result 4";
-    }
-    return result;
-}
+// Example restart button to go back to the first frame
+document.getElementById('restart-button').addEventListener('click', () => {
+    clearTimer();
+    showFrame(1);
+    startTimer(5, () => handleSwipeOrClick(2));
+});
