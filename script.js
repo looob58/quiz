@@ -3,6 +3,8 @@ let selectedAnswers = {};
 let timer;
 let timerElement = document.getElementById('timer');
 
+let touchStartX = 0;
+
 // Function to show a specific frame
 function showFrame(frameNumber) {
     clearTimer();
@@ -109,6 +111,28 @@ function showResult() {
         showFrame(1);
     }, 120000);  // 2 minutes timer to go back to the main page
 }
+
+// Function to detect swipe gestures
+function handleTouchStart(event) {
+    touchStartX = event.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(event) {
+    const touchEndX = event.changedTouches[0].screenX;
+    const swipeThreshold = 50; // Minimum distance (in px) to recognize a swipe
+
+    if (touchStartX - touchEndX > swipeThreshold) {
+        handleSwipeLeft();
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+        handleSwipeRight();
+    }
+}
+
+// Add touch event listeners
+document.querySelectorAll('.swipe-option').forEach(element => {
+    element.addEventListener('touchstart', handleTouchStart);
+    element.addEventListener('touchend', handleTouchEnd);
+});
 
 // Initialize the quiz by showing the welcome screen
 showFrame(1);
