@@ -1,6 +1,8 @@
 let currentFrame = 1;
-let answerQ2, answerQ4;
-let timer;
+let timerInterval;
+let countdownSeconds = 5; // Adjust as needed for each question
+let answerQ2 = '';
+let answerQ4 = '';
 let returnToStartTimeout;
 
 function showFrame(frameNumber) {
@@ -8,59 +10,58 @@ function showFrame(frameNumber) {
         frame.style.display = 'none';
     });
     document.getElementById(`frame-${frameNumber}`).style.display = 'flex';
-
     if (frameNumber >= 2 && frameNumber <= 6) {
-        startTimer(5);
+        startTimer();
+    } else {
+        stopTimer();
     }
 }
 
-function startTimer(seconds) {
-    let timeLeft = seconds;
-    document.getElementById('timer-circle').style.animation = `countdown ${seconds}s linear forwards`;
-    clearInterval(timer);
-    timer = setInterval(() => {
-        timeLeft--;
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            moveToNextFrame();
+function startTimer() {
+    let timerElement = document.getElementById('timer-container');
+    timerElement.textContent = countdownSeconds; // Start countdown text
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+        countdownSeconds--;
+        timerElement.textContent = countdownSeconds;
+        if (countdownSeconds <= 0) {
+            clearInterval(timerInterval);
+            handleSwipe('timeout'); // Handle timeout if no action is taken
         }
     }, 1000);
 }
 
-function moveToNextFrame() {
-    currentFrame++;
-    if (currentFrame === 7) {
-        analyzeResults();
-    } else if (currentFrame === 8) {
-        startReturnToStartTimer();
-    } else {
-        showFrame(currentFrame);
-    }
+function stopTimer() {
+    clearInterval(timerInterval);
+    countdownSeconds = 5; // Reset to default countdown seconds
 }
 
-document.querySelectorAll('.swipe-option').forEach(option => {
-    option.addEventListener('touchend', handleSwipe, false);
-});
-
-function handleSwipe(event) {
-    let answer = event.currentTarget.getAttribute('data-answer');
-    
-    // Store answers for specific questions
-    if (currentFrame === 3) {
+function handleSwipe(answer) {
+    stopTimer();
+    if (currentFrame === 2) {
+        // Redundant question, just go to next
+        currentFrame++;
+    } else if (currentFrame === 3) {
         answerQ2 = answer;
+        currentFrame++;
+    } else if (currentFrame === 4) {
+        // Redundant question, just go to next
+        currentFrame++;
     } else if (currentFrame === 5) {
         answerQ4 = answer;
+        currentFrame++;
+    } else if (currentFrame === 6) {
+        // Redundant question, just go to next
+        currentFrame++;
+    } else if (currentFrame === 7) {
+        currentFrame++;
+    } else if (currentFrame === 8) {
+        currentFrame = 1;
     }
-    
-    moveToNextFrame();
-}
-
-function analyzeResults() {
-    showFrame(7);
-    setTimeout(() => {
-        showFrame(8);
-        document.getElementById('result-text').textContent = `Your Result: ${getResult()}`;
-    }, 2000);
+    showFrame(currentFrame);
+    if (currentFrame === 8) {
+        startReturnToStartTimer();
+    }
 }
 
 function getResult() {
