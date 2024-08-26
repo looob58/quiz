@@ -11,7 +11,6 @@ body, html {
 .quiz-frame {
     display: none;
     flex-direction: column;
-    justify-content: space-between;
     width: 100%;
     height: 100%;
 }
@@ -32,8 +31,16 @@ body, html {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 20px; /* Add padding for better spacing */
-    position: relative; /* For positioning timer at the bottom */
+    padding: 20px;
+    position: relative;
+}
+
+.swipe-options {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    position: relative; /* For positioning swipe options side by side */
 }
 
 .swipe-option {
