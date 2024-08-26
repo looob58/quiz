@@ -4,8 +4,8 @@ body, html {
     width: 100%;
     height: 100%;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    overflow: hidden; /* Prevent scrolling */
+    display: flex;
+    flex-direction: column;
 }
 
 .quiz-frame {
@@ -22,30 +22,24 @@ body, html {
     align-items: center;
     background-color: #333;
     color: #fff;
-    text-align: center;
 }
 
 .bottom-portion {
     height: 67%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    position: relative;
 }
 
 .swipe-options {
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-between;
-    position: relative; /* For positioning swipe options side by side */
 }
 
 .swipe-option {
-    width: 48%;
-    height: calc(100% - 50px); /* Adjust for timer height */
+    width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,20 +67,19 @@ body, html {
 .centered-button button {
     background-color: #4CAF50;
     color: white;
-    padding: 15px 30px;
+    padding: 15px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .timer {
+    position: fixed;
+    bottom: 0;
     width: 100%;
-    background-color: black;
-    color: white;
-    padding: 10px 0;
+    background-color: #000;
+    color: #fff;
     text-align: center;
     font-size: 24px;
-    position: absolute;
-    bottom: 0;
+    padding: 10px;
 }
