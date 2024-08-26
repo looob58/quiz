@@ -8,42 +8,81 @@
 </head>
 <body>
     <div id="quiz-container">
+        <!-- Frame 1: Welcome Screen -->
         <div class="quiz-frame" id="frame-1">
-            <p>Welcome! Swipe to Start.</p>
+            <img src="welcome-background.jpg" alt="Welcome Background" class="background-image">
+            <button id="start-button">Start Quiz</button>
         </div>
+        
+        <!-- Frame 2: Question 1 -->
         <div class="quiz-frame" id="frame-2">
-            <div id="question-text">Question 1: Is the sky blue?</div>
-            <div id="swipe-container">
-                <div id="left-portion" class="swipe-option" data-answer="result1">
-                    <p>Swipe Left: Option 1</p>
-                </div>
-                <div id="right-portion" class="swipe-option" data-answer="result2">
-                    <p>Swipe Right: Option 2</p>
-                </div>
-            </div>
+            <div class="question-text">Question 1: Is the sky blue?</div>
             <div id="timer-container">
-                <p id="timer">5</p>
+                <div id="timer-circle"></div>
+            </div>
+            <div id="swipe-container">
+                <div id="left-portion" class="swipe-option" data-answer="question1-left"></div>
+                <div id="right-portion" class="swipe-option" data-answer="question1-right"></div>
             </div>
         </div>
+        
+        <!-- Frame 3: Question 2 with Swipe Options -->
         <div class="quiz-frame" id="frame-3">
-            <div id="question-text">Question 2: Is water wet?</div>
+            <div class="question-text">Question 2: Is water wet?</div>
             <div id="swipe-container">
-                <div id="left-portion" class="swipe-option" data-answer="result3">
-                    <p>Swipe Left: Option 3</p>
-                </div>
-                <div id="right-portion" class="swipe-option" data-answer="result4">
-                    <p>Swipe Right: Option 4</p>
-                </div>
+                <div id="left-portion" class="swipe-option" data-answer="result1"></div>
+                <div id="right-portion" class="swipe-option" data-answer="result2"></div>
             </div>
             <div id="timer-container">
-                <p id="timer">5</p>
+                <div id="timer-circle"></div>
             </div>
         </div>
+        
+        <!-- Frame 4: Question 3 -->
         <div class="quiz-frame" id="frame-4">
-            <div id="question-text">Analyzing...</div>
+            <div class="question-text">Question 3: Is fire hot?</div>
+            <div id="swipe-container">
+                <div id="left-portion" class="swipe-option" data-answer="question3-left"></div>
+                <div id="right-portion" class="swipe-option" data-answer="question3-right"></div>
+            </div>
+            <div id="timer-container">
+                <div id="timer-circle"></div>
+            </div>
         </div>
+        
+        <!-- Frame 5: Question 4 with Swipe Options -->
         <div class="quiz-frame" id="frame-5">
-            <p id="result-text">Your Result:</p>
+            <div class="question-text">Question 4: Can birds fly?</div>
+            <div id="swipe-container">
+                <div id="left-portion" class="swipe-option" data-answer="result3"></div>
+                <div id="right-portion" class="swipe-option" data-answer="result4"></div>
+            </div>
+            <div id="timer-container">
+                <div id="timer-circle"></div>
+            </div>
+        </div>
+        
+        <!-- Frame 6: Question 5 -->
+        <div class="quiz-frame" id="frame-6">
+            <div class="question-text">Question 5: Do humans breathe oxygen?</div>
+            <div id="swipe-container">
+                <div id="left-portion" class="swipe-option" data-answer="question5-left"></div>
+                <div id="right-portion" class="swipe-option" data-answer="question5-right"></div>
+            </div>
+            <div id="timer-container">
+                <div id="timer-circle"></div>
+            </div>
+        </div>
+        
+        <!-- Frame 7: Analyzing Screen -->
+        <div class="quiz-frame" id="frame-7">
+            <div class="question-text">Analyzing...</div>
+        </div>
+        
+        <!-- Frame 8: Result Screen -->
+        <div class="quiz-frame" id="frame-8">
+            <img src="result-background.jpg" alt="Result Background" class="background-image">
+            <div id="result-text">Your Result:</div>
             <button id="restart-button">Restart Quiz</button>
         </div>
     </div>
