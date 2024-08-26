@@ -8,13 +8,45 @@
 </head>
 <body>
     <div id="quiz-container">
-        <div class="quiz-card" data-answer="yes">
+        <div class="quiz-frame" id="frame-1">
+            <p>Welcome! Swipe to Start.</p>
+        </div>
+        <div class="quiz-frame" id="frame-2">
             <p>Question 1: Is the sky blue?</p>
         </div>
-        <div class="quiz-card" data-answer="no">
-            <p>Question 2: Is the grass red?</p>
+        <div class="quiz-frame" id="frame-3">
+            <div id="swipe-container">
+                <div id="left-portion" class="swipe-option" data-answer="result1">
+                    <p>Swipe Left: Option 1</p>
+                </div>
+                <div id="right-portion" class="swipe-option" data-answer="result2">
+                    <p>Swipe Right: Option 2</p>
+                </div>
+            </div>
         </div>
-        <!-- Add more quiz cards as needed -->
+        <div class="quiz-frame" id="frame-4">
+            <p>Question 3: Is water wet?</p>
+        </div>
+        <div class="quiz-frame" id="frame-5">
+            <div id="swipe-container">
+                <div id="left-portion" class="swipe-option" data-answer="result3">
+                    <p>Swipe Left: Option 3</p>
+                </div>
+                <div id="right-portion" class="swipe-option" data-answer="result4">
+                    <p>Swipe Right: Option 4</p>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-frame" id="frame-6">
+            <p>Question 5: Do fish swim?</p>
+        </div>
+        <div class="quiz-frame" id="frame-7">
+            <p>Analyzing...</p>
+        </div>
+        <div class="quiz-frame" id="frame-8">
+            <p id="result-text">Your Result:</p>
+            <button id="restart-button">Restart Quiz</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
