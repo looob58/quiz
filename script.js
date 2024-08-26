@@ -25,7 +25,7 @@ function handleSwipeRight() {
 }
 
 function startTimer(frameNumber) {
-    if (frameNumber >= 2 && frameNumber <= 6) {
+    if (frameNumber >= 2 && frameNumber <= 7) {
         let timeLeft = 5;
         const timerElement = document.getElementById('timer');
         timerElement.textContent = timeLeft;
