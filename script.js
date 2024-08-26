@@ -1,5 +1,5 @@
 let currentFrame = 1;
-let result1, result2;
+let answerQ2, answerQ4;
 let timer;
 let returnToStartTimeout;
 
@@ -9,21 +9,17 @@ function showFrame(frameNumber) {
     });
     document.getElementById(`frame-${frameNumber}`).style.display = 'flex';
 
-    // Reset and start timer if applicable
-    if (frameNumber === 2 || frameNumber === 3) {
+    if (frameNumber >= 2 && frameNumber <= 6) {
         startTimer(5);
     }
 }
 
 function startTimer(seconds) {
     let timeLeft = seconds;
-    document.getElementById('timer').textContent = timeLeft;
-
+    document.getElementById('timer-circle').style.animation = `countdown ${seconds}s linear forwards`;
     clearInterval(timer);
     timer = setInterval(() => {
         timeLeft--;
-        document.getElementById('timer').textContent = timeLeft;
-
         if (timeLeft <= 0) {
             clearInterval(timer);
             moveToNextFrame();
@@ -33,9 +29,9 @@ function startTimer(seconds) {
 
 function moveToNextFrame() {
     currentFrame++;
-    if (currentFrame === 4) {
+    if (currentFrame === 7) {
         analyzeResults();
-    } else if (currentFrame === 5) {
+    } else if (currentFrame === 8) {
         startReturnToStartTimer();
     } else {
         showFrame(currentFrame);
@@ -49,21 +45,35 @@ document.querySelectorAll('.swipe-option').forEach(option => {
 function handleSwipe(event) {
     let answer = event.currentTarget.getAttribute('data-answer');
     
-    if (currentFrame === 2) {
-        result1 = answer;
-    } else if (currentFrame === 3) {
-        result2 = answer;
+    // Store answers for specific questions
+    if (currentFrame === 3) {
+        answerQ2 = answer;
+    } else if (currentFrame === 5) {
+        answerQ4 = answer;
     }
     
     moveToNextFrame();
 }
 
 function analyzeResults() {
-    showFrame(4);
+    showFrame(7);
     setTimeout(() => {
-        showFrame(5);
-        document.getElementById('result-text').textContent = `Your Result: ${result1} and ${result2}`;
+        showFrame(8);
+        document.getElementById('result-text').textContent = `Your Result: ${getResult()}`;
     }, 2000);
+}
+
+function getResult() {
+    if (answerQ2 === 'result1' && answerQ4 === 'result3') {
+        return 'Result A'; // Replace with actual result description
+    } else if (answerQ2 === 'result1' && answerQ4 === 'result4') {
+        return 'Result B'; // Replace with actual result description
+    } else if (answerQ2 === 'result2' && answerQ4 === 'result3') {
+        return 'Result C'; // Replace with actual result description
+    } else if (answerQ2 === 'result2' && answerQ4 === 'result4') {
+        return 'Result D'; // Replace with actual result description
+    }
+    return 'No result'; // Default or fallback result
 }
 
 function startReturnToStartTimer() {
@@ -83,11 +93,10 @@ document.getElementById('restart-button').addEventListener('click', () => {
     restartQuiz();
 });
 
-// Start the quiz
-showFrame(1);
-
-// Move to the next frame on tap/click in the welcome screen
-document.getElementById('frame-1').addEventListener('click', () => {
+document.getElementById('start-button').addEventListener('click', () => {
     currentFrame++;
     showFrame(currentFrame);
 });
+
+// Start the quiz
+showFrame(1);
