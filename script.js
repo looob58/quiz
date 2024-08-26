@@ -60,6 +60,10 @@ document.getElementById('swipe-right-4').addEventListener('click', handleSwipeRi
 document.getElementById('swipe-left-5').addEventListener('click', handleSwipeLeft);
 document.getElementById('swipe-right-5').addEventListener('click', handleSwipeRight);
 
+document.getElementById('swipe-left-6').addEventListener('click', handleSwipeLeft);
+document.getElementById('swipe-right-6').addEventListener('click', handleSwipeRight);
+
+
 document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(1);
 });
