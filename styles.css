@@ -25,19 +25,35 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    font-size: 24px;
-    text-align: center;
-    background-color: #4a90e2;
     color: white;
+    position: relative;
 }
 
-#question-text {
+.background-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#frame-1 #start-button {
+    padding: 15px 30px;
+    font-size: 24px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.question-text {
     height: 33%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2rem;
-    padding: 20px;
+    text-align: center;
 }
 
 #swipe-container {
@@ -48,20 +64,23 @@ body {
 
 .swipe-option {
     width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     color: white;
+    background-size: cover;
+    background-position: center;
     cursor: pointer;
 }
 
 #left-portion {
-    background-color: #ff4d4d;
+    background-color: rgba(255, 77, 77, 0.8);
 }
 
 #right-portion {
-    background-color: #4caf50;
+    background-color: rgba(76, 175, 80, 0.8);
 }
 
 #timer-container {
@@ -69,20 +88,41 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    background-color: black;
 }
 
-#timer {
-    font-size: 2rem;
+#timer-circle {
+    width: 60px;
+    height: 60px;
+    border: 5px solid white;
+    border-radius: 50%;
+    position: relative;
+    animation: countdown 5s linear forwards;
 }
 
-#frame-5 {
+@keyframes countdown {
+    from {
+        stroke-dashoffset: 100;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#frame-8 {
     background-color: #333;
     color: white;
     flex-direction: column;
+    justify-content: center;
+}
+
+#result-text {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 #restart-button {
-    margin-top: 20px;
     padding: 10px 20px;
     font-size: 24px;
     color: white;
