@@ -99,4 +99,42 @@ body {
     width: 60px;
     height: 60px;
     border: 5px solid white;
-    border-radius
+    border-radius: 50%;
+    position: relative;
+    border-top: 5px solid transparent;
+    border-right: 5px solid transparent;
+    animation: countdown 5s linear forwards;
+}
+
+@keyframes countdown {
+    0% {
+        transform: rotate(0deg);
+        border-top-color: white;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-top-color: transparent;
+    }
+}
+
+#frame-8 {
+    background-color: #333;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#result-text {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#restart-button {
+    padding: 10px 20px;
+    font-size: 24px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
