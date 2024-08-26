@@ -54,11 +54,17 @@ function handleSwipe(answer) {
         // Redundant question, just go to next
         currentFrame++;
     } else if (currentFrame === 7) {
-        currentFrame++;
+        // Analyzing screen, transition to result after analyzing
+        setTimeout(() => {
+            currentFrame++;
+            showFrame(currentFrame);
+        }, 2000); // 2 seconds delay for analyzing
+        return; // Exit function to avoid immediate frame change
     } else if (currentFrame === 8) {
         // Display result based on answers
         document.getElementById('result-text').textContent = getResult();
         startReturnToStartTimer(); // Start timer to return to frame 1
+        return; // Exit function to avoid immediate frame change
     }
     showFrame(currentFrame);
 }
