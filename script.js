@@ -1,57 +1,66 @@
-let startX, currentCard, nextCard;
+let currentFrame = 1;
+let result1, result2;
+let returnToStartTimeout;
 
-document.querySelectorAll('.quiz-card').forEach(card => {
-    card.addEventListener('touchstart', handleTouchStart, false);
-    card.addEventListener('touchmove', handleTouchMove, false);
-    card.addEventListener('touchend', handleTouchEnd, false);
+function showFrame(frameNumber) {
+    document.querySelectorAll('.quiz-frame').forEach(frame => {
+        frame.style.display = 'none';
+    });
+    document.getElementById(`frame-${frameNumber}`).style.display = 'flex';
+}
+
+document.querySelectorAll('.swipe-option').forEach(option => {
+    option.addEventListener('touchend', handleSwipe, false);
 });
 
-function handleTouchStart(event) {
-    startX = event.touches[0].clientX;
-    currentCard = event.currentTarget;
-    nextCard = currentCard.nextElementSibling;
-}
-
-function handleTouchMove(event) {
-    let touchX = event.touches[0].clientX;
-    let moveX = touchX - startX;
-
-    currentCard.classList.add('swiping');
-    currentCard.style.transform = `translateX(${moveX}px) rotate(${moveX * 0.1}deg)`;
-
-    if (nextCard) {
-        nextCard.style.transform = `scale(${1 - Math.abs(moveX) / 1000})`;
-        nextCard.style.opacity = `${0.8 + Math.abs(moveX) / 1000}`;
+function handleSwipe(event) {
+    let answer = event.currentTarget.getAttribute('data-answer');
+    
+    if (currentFrame === 3) {
+        result1 = answer;
+    } else if (currentFrame === 5) {
+        result2 = answer;
     }
-}
-
-function handleTouchEnd(event) {
-    let moveX = event.changedTouches[0].clientX - startX;
-
-    if (Math.abs(moveX) > 100) {
-        currentCard.style.transform = `translateX(${moveX > 0 ? 500 : -500}px) rotate(${moveX * 0.1}deg)`;
-        currentCard.style.opacity = 0;
-        currentCard.addEventListener('transitionend', () => {
-            currentCard.remove();
-        });
-
-        // Handle the answer here
-        let answer = currentCard.getAttribute('data-answer');
-        console.log('User answered:', answer);
-
-        // Move the next card up
-        if (nextCard) {
-            nextCard.style.zIndex = 2;
-            nextCard.style.transform = 'scale(1)';
-            nextCard.style.opacity = '1';
-        }
+    
+    currentFrame++;
+    if (currentFrame === 7) {
+        analyzeResults();
     } else {
-        currentCard.classList.remove('swiping');
-        currentCard.style.transform = 'translateX(0) rotate(0)';
-
-        if (nextCard) {
-            nextCard.style.transform = 'scale(0.95)';
-            nextCard.style.opacity = '0.8';
-        }
+        showFrame(currentFrame);
     }
 }
+
+function analyzeResults() {
+    showFrame(7);
+    setTimeout(() => {
+        showFrame(8);
+        document.getElementById('result-text').textContent = `Your Result: ${result1} and ${result2}`;
+        startReturnToStartTimer();
+    }, 2000);
+}
+
+function startReturnToStartTimer() {
+    clearTimeout(returnToStartTimeout);
+    returnToStartTimeout = setTimeout(() => {
+        restartQuiz();
+    }, 180000); // 3 minutes in milliseconds
+}
+
+function restartQuiz() {
+    currentFrame = 1;
+    showFrame(currentFrame);
+}
+
+document.getElementById('restart-button').addEventListener('click', () => {
+    clearTimeout(returnToStartTimeout);
+    restartQuiz();
+});
+
+// Start the quiz
+showFrame(1);
+
+// Move to the next frame on tap/click in the welcome screen
+document.getElementById('frame-1').addEventListener('click', () => {
+    currentFrame++;
+    showFrame(currentFrame);
+});
