@@ -20,12 +20,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
 function showFrame(frameNumber) {
-    document.querySelectorAll(".quiz-frame").forEach(frame => {
-        frame.style.display = "none";
-    });
-    document.getElementById(`frame-${frameNumber}`).style.display = "flex";
-    if (frameNumber >= 2 && frameNumber <= 6) {
+    // Hide all frames
+    for (let i = 1; i <= 8; i++) {
+        const frame = document.getElementById(`frame-${i}`);
+        if (frame) {
+            frame.style.display = "none";
+        }
+    }
+
+    // Show the requested frame
+    const currentFrame = document.getElementById(`frame-${frameNumber}`);
+    if (currentFrame) {
+        currentFrame.style.display = "flex"; // Ensure this is "flex" to work with your CSS
+    } else {
+        console.error(`Frame ${frameNumber} does not exist.`);
+    }
+   if (frameNumber >= 2 && frameNumber <= 6) {
         startTimer();
     }
 }
@@ -36,7 +48,12 @@ function handleSwipe(event) {
 
     if (currentFrame === 3 || currentFrame === 5) {
         currentFrame++;
-    }  else {
+    } else if (currentFrame === 6) {
+        currentFrame = 7;
+        setTimeout(() => {
+            displayResult();
+        }, 2000); // Simulate analyzing time
+    }else {
         currentFrame++;
     }
     showFrame(currentFrame);
