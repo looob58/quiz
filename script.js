@@ -74,30 +74,51 @@ function getResult() {
     } else if (answerQ2 === 'result2' && answerQ4 === 'result4') {
         return 'Result D'; // Replace with actual result description
     }
-    return 'No result'; // Default or fallback result
 }
 
 function startReturnToStartTimer() {
     clearTimeout(returnToStartTimeout);
     returnToStartTimeout = setTimeout(() => {
-        restartQuiz();
-    }, 180000); // 3 minutes in milliseconds
+        showFrame(1);
+    }, 180000); // 3 minutes
 }
-
-function restartQuiz() {
-    currentFrame = 1;
-    showFrame(currentFrame);
-}
-
-document.getElementById('restart-button').addEventListener('click', () => {
-    clearTimeout(returnToStartTimeout);
-    restartQuiz();
-});
 
 document.getElementById('start-button').addEventListener('click', () => {
-    currentFrame++;
-    showFrame(currentFrame);
+    showFrame(2);
 });
 
-// Start the quiz
-showFrame(1);
+document.getElementById('restart-button').addEventListener('click', () => {
+    showFrame(1);
+});
+
+const swipeHandler = (direction) => {
+    handleSwipe(direction);
+};
+
+document.getElementById('left-portion').addEventListener('click', () => swipeHandler('left'));
+document.getElementById('right-portion').addEventListener('click', () => swipeHandler('right'));
+
+const handleSwipeEvent = (event) => {
+    const swipeThreshold = 50; // Minimum swipe distance in pixels
+    let startX = event.touches[0].clientX;
+    let startY = event.touches[0].clientY;
+
+    const handleMove = (moveEvent) => {
+        const distanceX = moveEvent.touches[0].clientX - startX;
+        const distanceY = moveEvent.touches[0].clientY - startY;
+
+        if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > swipeThreshold) {
+            if (distanceX > 0) {
+                swipeHandler('right');
+            } else {
+                swipeHandler('left');
+            }
+            document.removeEventListener('touchmove', handleMove);
+        }
+    };
+
+    document.addEventListener('touchmove', handleMove);
+};
+
+document.getElementById('left-portion').addEventListener('touchstart', handleSwipeEvent);
+document.getElementById('right-portion').addEventListener('touchstart', handleSwipeEvent);
