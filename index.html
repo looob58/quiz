@@ -12,9 +12,7 @@
             <p>Welcome! Swipe to Start.</p>
         </div>
         <div class="quiz-frame" id="frame-2">
-            <p>Question 1: Is the sky blue?</p>
-        </div>
-        <div class="quiz-frame" id="frame-3">
+            <div id="question-text">Question 1: Is the sky blue?</div>
             <div id="swipe-container">
                 <div id="left-portion" class="swipe-option" data-answer="result1">
                     <p>Swipe Left: Option 1</p>
@@ -23,11 +21,12 @@
                     <p>Swipe Right: Option 2</p>
                 </div>
             </div>
+            <div id="timer-container">
+                <p id="timer">5</p>
+            </div>
         </div>
-        <div class="quiz-frame" id="frame-4">
-            <p>Question 3: Is water wet?</p>
-        </div>
-        <div class="quiz-frame" id="frame-5">
+        <div class="quiz-frame" id="frame-3">
+            <div id="question-text">Question 2: Is water wet?</div>
             <div id="swipe-container">
                 <div id="left-portion" class="swipe-option" data-answer="result3">
                     <p>Swipe Left: Option 3</p>
@@ -36,14 +35,14 @@
                     <p>Swipe Right: Option 4</p>
                 </div>
             </div>
+            <div id="timer-container">
+                <p id="timer">5</p>
+            </div>
         </div>
-        <div class="quiz-frame" id="frame-6">
-            <p>Question 5: Do fish swim?</p>
+        <div class="quiz-frame" id="frame-4">
+            <div id="question-text">Analyzing...</div>
         </div>
-        <div class="quiz-frame" id="frame-7">
-            <p>Analyzing...</p>
-        </div>
-        <div class="quiz-frame" id="frame-8">
+        <div class="quiz-frame" id="frame-5">
             <p id="result-text">Your Result:</p>
             <button id="restart-button">Restart Quiz</button>
         </div>
