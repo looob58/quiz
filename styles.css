@@ -11,9 +11,8 @@ body {
 }
 
 #quiz-container {
-    width: 1080px;
-    height: 1920px;
-    position: relative;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -23,31 +22,27 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    font-size: 48px;
+    font-size: 24px;
     text-align: center;
     background-color: #4a90e2;
     color: white;
 }
 
-#frame-1,
-#frame-2,
-#frame-4,
-#frame-6,
-#frame-7 {
-    background-color: #4a90e2;
-}
-
-#frame-3,
-#frame-5 {
+#question-text {
+    height: 33%;
     display: flex;
-    flex-direction: column;
-    background-color: #4a90e2;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 20px;
 }
 
 #swipe-container {
-    flex: 2;
+    height: 57%;
+    width: 100%;
     display: flex;
 }
 
@@ -56,7 +51,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 36px;
+    font-size: 1.5rem;
     color: white;
     cursor: pointer;
 }
@@ -69,7 +64,18 @@ body {
     background-color: #4caf50;
 }
 
-#frame-8 {
+#timer-container {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    font-size: 2rem;
+}
+
+#frame-5 {
     background-color: #333;
     color: white;
     flex-direction: column;
