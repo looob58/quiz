@@ -1,4 +1,5 @@
 let timerInterval;
+let answers = {}; // To store answers from questions 2 and 4
 
 function startTimer(seconds, callback) {
     let remainingTime = seconds;
@@ -29,11 +30,19 @@ function clearTimer() {
     }
 }
 
-function handleSwipeOrClick(nextFrame) {
+function handleSwipeOrClick(nextFrame, answerKey, answerValue) {
     clearTimer(); // Clear the timer when a swipe or click happens
-    showFrame(nextFrame);
-    if (nextFrame <= 7) { // Start a timer only if not on the last result frame
+
+    // Store the answer if it's from question 2 or 4
+    if (answerKey && answerValue) {
+        answers[answerKey] = answerValue;
+    }
+
+    if (nextFrame <= 7) {
+        showFrame(nextFrame);
         startTimer(5, () => handleSwipeOrClick(nextFrame + 1));
+    } else {
+        showResults();
     }
 }
 
@@ -55,23 +64,43 @@ function showFrame(frameNumber) {
     }
 }
 
+function showResults() {
+    // Calculate results based on answers from questions 2 and 4
+    let resultText = "";
+    if (answers.q2 === "left" && answers.q4 === "left") {
+        resultText = "Result 1";
+    } else if (answers.q2 === "right" && answers.q4 === "right") {
+        resultText = "Result 2";
+    } else if (answers.q2 === "left" && answers.q4 === "right") {
+        resultText = "Result 3";
+    } else if (answers.q2 === "right" && answers.q4 === "left") {
+        resultText = "Result 4";
+    } else {
+        resultText = "No result found.";
+    }
+
+    // Display the result
+    document.getElementById('result-text').textContent = resultText;
+    showFrame(8);
+}
+
 // Initialize the first frame and start the timer
 document.addEventListener('DOMContentLoaded', () => {
     showFrame(1);
 
     // Event listeners for swipe and click (example for two buttons)
-    document.getElementById('swipe-left').addEventListener('click', () => handleSwipeOrClick(2));
-    document.getElementById('swipe-right').addEventListener('click', () => handleSwipeOrClick(3));
-    
-    // Repeat similar event listeners for other buttons or swipe actions
-    // For example:
-    // document.getElementById('swipe-left-2').addEventListener('click', () => handleSwipeOrClick(4));
-    // document.getElementById('swipe-right-2').addEventListener('click', () => handleSwipeOrClick(5));
+    document.getElementById('start-button').addEventListener('click', () => handleSwipeOrClick(2));
+    document.getElementById('swipe-left-2').addEventListener('click', () => handleSwipeOrClick(4, 'q2', 'left'));
+    document.getElementById('swipe-right-2').addEventListener('click', () => handleSwipeOrClick(4, 'q2', 'right'));
+    document.getElementById('swipe-left-4').addEventListener('click', () => handleSwipeOrClick(6, 'q4', 'left'));
+    document.getElementById('swipe-right-4').addEventListener('click', () => handleSwipeOrClick(6, 'q4', 'right'));
+    // Add similar event listeners for redundant questions
 });
 
 // Example restart button to go back to the first frame
 document.getElementById('restart-button').addEventListener('click', () => {
     clearTimer();
+    answers = {}; // Reset the answers
     showFrame(1);
     startTimer(5, () => handleSwipeOrClick(2));
 });
