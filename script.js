@@ -1,6 +1,6 @@
 let currentFrame = 1;
 let timerInterval;
-let countdownSeconds = 5; // Adjust as needed for each question
+let countdownSeconds = 5; // Time for each question in seconds
 let answerQ2 = '';
 let answerQ4 = '';
 let returnToStartTimeout;
@@ -78,52 +78,27 @@ function getResult() {
 function startReturnToStartTimer() {
     clearTimeout(returnToStartTimeout);
     returnToStartTimeout = setTimeout(() => {
-        showFrame(1);
-    }, 180000); // 3 minutes
+        currentFrame = 1;
+        showFrame(currentFrame);
+    }, 180000); // 3 minutes in milliseconds
 }
 
 document.getElementById('start-button').addEventListener('click', () => {
-    showFrame(2);
+    currentFrame = 2;
+    showFrame(currentFrame);
 });
 
 document.getElementById('restart-button').addEventListener('click', () => {
-    showFrame(1);
-    answerQ2 = '';
-    answerQ4 = '';
+    currentFrame = 1;
+    showFrame(currentFrame);
 });
 
-const swipeHandler = (direction) => {
-    handleSwipe(direction);
-};
-
-const swipeOptions = document.querySelectorAll('.swipe-option');
-swipeOptions.forEach(option => {
-    option.addEventListener('click', (event) => {
-        if (event.target.id === 'left-portion') {
-            swipeHandler('left');
-        } else if (event.target.id === 'right-portion') {
-            swipeHandler('right');
-        }
-    });
-
-    option.addEventListener('touchstart', (event) => {
-        const startX = event.touches[0].clientX;
-        const startY = event.touches[0].clientY;
-
-        const handleMove = (moveEvent) => {
-            const distanceX = moveEvent.touches[0].clientX - startX;
-            const distanceY = moveEvent.touches[0].clientY - startY;
-
-            if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > 50) { // Adjust swipe threshold as needed
-                if (distanceX > 0) {
-                    swipeHandler('right');
-                } else {
-                    swipeHandler('left');
-                }
-                document.removeEventListener('touchmove', handleMove);
-            }
-        };
-
-        document.addEventListener('touchmove', handleMove);
+document.querySelectorAll('.swipe-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const answer = e.target.id === 'left-portion' ? 'left' : 'right';
+        handleSwipe(answer);
     });
 });
+
+document.addEventListener('swiped-left', () => handleSwipe('left'));
+document.addEventListener('swiped-right', () => handleSwipe('right'));
