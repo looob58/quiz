@@ -36,12 +36,7 @@ function handleSwipe(event) {
 
     if (currentFrame === 3 || currentFrame === 5) {
         currentFrame++;
-    } else if (currentFrame === 6) {
-        currentFrame = 7;
-        setTimeout(() => {
-            displayResult();
-        }, 2000); // Simulate analyzing time
-    } else {
+    }  else {
         currentFrame++;
     }
     showFrame(currentFrame);
