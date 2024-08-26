@@ -7,16 +7,77 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="quiz-container">
-        <div class="quiz-card" data-answer="yes">
-            <p>Question 1: Is the sky blue?</p>
+    <div id="frame-1" class="quiz-frame">
+        <div class="content">
+            <div class="welcome-screen">
+                <h1>Welcome to the Quiz!</h1>
+                <button id="start-button">Start</button>
+            </div>
         </div>
-        <div class="quiz-card" data-answer="no">
-            <p>Question 2: Is the grass red?</p>
-        </div>
-        <!-- Add more quiz cards as needed -->
     </div>
-
+    <div id="frame-2" class="quiz-frame">
+        <div class="content">
+            <div class="question-top">Question 1</div>
+            <div class="swipe-container">
+                <div id="left-portion-2" class="swipe-option">Left</div>
+                <div id="right-portion-2" class="swipe-option">Right</div>
+            </div>
+            <div id="timer-container-2" class="timer">5</div>
+        </div>
+    </div>
+    <div id="frame-3" class="quiz-frame">
+        <div class="content">
+            <div class="question-top">Question 2</div>
+            <div class="swipe-container">
+                <div id="left-portion-3" class="swipe-option">Left</div>
+                <div id="right-portion-3" class="swipe-option">Right</div>
+            </div>
+            <div id="timer-container-3" class="timer">5</div>
+        </div>
+    </div>
+    <div id="frame-4" class="quiz-frame">
+        <div class="content">
+            <div class="question-top">Question 3</div>
+            <div class="swipe-container">
+                <div id="left-portion-4" class="swipe-option">Left</div>
+                <div id="right-portion-4" class="swipe-option">Right</div>
+            </div>
+            <div id="timer-container-4" class="timer">5</div>
+        </div>
+    </div>
+    <div id="frame-5" class="quiz-frame">
+        <div class="content">
+            <div class="question-top">Question 4</div>
+            <div class="swipe-container">
+                <div id="left-portion-5" class="swipe-option">Left</div>
+                <div id="right-portion-5" class="swipe-option">Right</div>
+            </div>
+            <div id="timer-container-5" class="timer">5</div>
+        </div>
+    </div>
+    <div id="frame-6" class="quiz-frame">
+        <div class="content">
+            <div class="question-top">Question 5</div>
+            <div class="swipe-container">
+                <div id="left-portion-6" class="swipe-option">Left</div>
+                <div id="right-portion-6" class="swipe-option">Right</div>
+            </div>
+            <div id="timer-container-6" class="timer">5</div>
+        </div>
+    </div>
+    <div id="frame-7" class="quiz-frame">
+        <div class="content">
+            <div class="analyzing-screen">Analyzing...</div>
+        </div>
+    </div>
+    <div id="frame-8" class="quiz-frame">
+        <div class="content">
+            <div class="result-screen">
+                <h1 id="result-text">Result will be displayed here</h1>
+                <button id="restart-button">Restart</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
