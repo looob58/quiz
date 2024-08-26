@@ -29,14 +29,16 @@ body, html {
 .bottom-portion {
     height: 67%;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px; /* Add padding for better spacing */
+    position: relative; /* For positioning timer at the bottom */
 }
 
 .swipe-option {
     width: 48%;
-    height: 100%;
+    height: calc(100% - 50px); /* Adjust for timer height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,14 +74,12 @@ body, html {
 }
 
 .timer {
-    position: fixed;
-    bottom: 10px; /* Adjust this as needed */
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
     background-color: black;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 24px;
+    padding: 10px 0;
     text-align: center;
+    font-size: 24px;
+    position: absolute;
+    bottom: 0;
 }
