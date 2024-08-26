@@ -58,7 +58,7 @@ function startTimer(frameNumber) {
             timerElement.textContent = timeLeft;
             if (timeLeft <= 0) {
                 clearTimer();
-                showFrame(currentFrame + 1);
+                handleSwipeRight() ;
             }
         }, 1000);
     } else {
