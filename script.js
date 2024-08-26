@@ -93,3 +93,12 @@ document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(currentFrame);
 });
 
+document.querySelectorAll('.swipe-option').forEach(option => {
+    option.addEventListener('click', (e) => {
+        const answer = e.target.id === 'left-portion' ? 'left' : 'right';
+        handleSwipe(answer);
+    });
+});
+
+document.addEventListener('swiped-left', () => handleSwipe('left'));
+document.addEventListener('swiped-right', () => handleSwipe('right'));
