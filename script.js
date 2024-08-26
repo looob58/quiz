@@ -10,22 +10,40 @@ function showFrame(frameNumber) {
     document.getElementById(`frame-${frameNumber}`).style.display = "flex";
     currentFrame = frameNumber;
     startTimer(frameNumber);
+
+    
 }
 
 function handleSwipeLeft() {
     if (currentFrame === 3) selectedAnswers.question2 = "left";
     if (currentFrame === 5) selectedAnswers.question4 = "left";
-    showFrame(currentFrame + 1);
+    
+     if (currentFrame === 6) {
+        analyzeResults();
+    } else {
+      showFrame(currentFrame + 1);
+    }
 }
 
 function handleSwipeRight() {
     if (currentFrame === 3) selectedAnswers.question2 = "right";
     if (currentFrame === 5) selectedAnswers.question4 = "right";
-    showFrame(currentFrame + 1);
-}
 
+     if (currentFrame === 6) {
+        analyzeResults();
+    } else {
+      showFrame(currentFrame + 1);
+    }
+}
+function analyzeResults() {
+    showFrame(7);
+    setTimeout(() => {
+        showFrame(8);
+        document.getElementById('result-text').textContent = `Your Result: ${result1} and ${result2}`;
+    }, 2000);
+}
 function startTimer(frameNumber) {
-    if (frameNumber >= 2 && frameNumber <= 7) {
+    if (frameNumber >= 2 && frameNumber <= 6) {
         let timeLeft = 5;
         const timerElement = document.getElementById('timer');
         timerElement.textContent = timeLeft;
