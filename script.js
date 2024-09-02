@@ -107,10 +107,10 @@ document.querySelectorAll('.swipe-option').forEach(element => {
         }
     });
 });
-
-document.getElementById('restart-button').addEventListener('click', () => {
+document.getElementById('result-image').addEventListener('click', () => {
     showFrame(1);
 });
+
 
 // Function to show result based on the answers
 function showResult() {
