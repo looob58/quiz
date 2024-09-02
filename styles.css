@@ -32,7 +32,7 @@ body, html {
    width:100%;
 }
 .bottom-full{
-  
+  height:100%;
 }
 .bottom-portion {
     height: calc(100% - 110px);
