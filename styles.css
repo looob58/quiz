@@ -12,10 +12,9 @@ body, html {
 
 .quiz-frame {
     display: none;
-    width: 1080px;
-    height: 1920px;
-    display: flex;
     flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .top-portion {
@@ -26,7 +25,6 @@ body, html {
     text-align: center;
     background-image: url('hdr.jpg');
     background-size: cover;
-    background-position: center;
 }
 
 .bottom-portion {
@@ -40,7 +38,6 @@ body, html {
     justify-content: space-between;
     align-items: center;
     position: relative;
-    width: 100%;
 }
 
 .swipe-options {
@@ -48,7 +45,6 @@ body, html {
     height: calc(100% - 110px); /* Adjust for the timer height */
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .swipe-option {
@@ -63,15 +59,29 @@ body, html {
 }
 
 .left-option {
-    background-image: url('left.jpg'); /* Placeholder for left swipe option background */
-    background-size: cover;
-    background-position: center;
+   
 }
 
 .right-option {
-    background-image: url('right.jpg'); /* Placeholder for right swipe option background */
-    background-size: cover;
-    background-position: center;
+   
+}
+
+.centered-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .timer {
@@ -87,7 +97,6 @@ body, html {
     color: #fff;
     font-size: 48px;
     background-size: cover;
-    background-position: center;
 }
 
 #result-image {
@@ -95,16 +104,4 @@ body, html {
     height: 100%;
     background-size: cover;
     background-position: center;
-}
-
-#main-gif-container {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-#main-gif {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
