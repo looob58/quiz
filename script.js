@@ -125,7 +125,7 @@ function showResult() {
     const resultImage = document.getElementById('result-image');
     var resultext;
     resultext= selectedAnswers.question1 + selectedAnswers.question2  + selectedAnswers.question3 + selectedAnswers.question4 + selectedAnswers.question5;
-    document.write(resultext);
+  
      if (resultext ==='ABAAA') {
          resultImage.style.backgroundImage = "url('a1.jpg')";
    }
