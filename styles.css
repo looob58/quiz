@@ -25,7 +25,6 @@ body, html {
     text-align: center;
     background-image: url('hdr.jpg');
     background-size: cover;
-    background-position: center;
 }
 
 .bottom-portion {
@@ -60,11 +59,11 @@ body, html {
 }
 
 .left-option {
-    background-color: #ff5757;
+   
 }
 
 .right-option {
-    background-color: #57a5ff;
+   
 }
 
 .centered-button {
@@ -98,7 +97,6 @@ button {
     color: #fff;
     font-size: 48px;
     background-size: cover;
-    background-position: center;
 }
 
 #result-image {
@@ -106,10 +104,4 @@ button {
     height: 100%;
     background-size: cover;
     background-position: center;
-    cursor: pointer;
-}
-
-/* Hide timer for specific frames */
-.no-timer .timer {
-    display: none;
 }
