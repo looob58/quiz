@@ -77,7 +77,7 @@ function startTimer(frameNumber) {
 // Function to update the timer image
 function updateTimerImage(timeLeft) {
     if (timeLeft > 0 && timeLeft <= 5) {
-        timerElement.style.backgroundImage = url(${timerImages[timeLeft - 1]});
+        timerElement.style.backgroundImage = url('${timerImages[timeLeft - 1]}');
     }
 }
 
