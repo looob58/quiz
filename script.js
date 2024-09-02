@@ -21,7 +21,11 @@ function showFrame(frameNumber) {
     });
     document.getElementById(`frame-${frameNumber}`).style.display = "flex";
     currentFrame = frameNumber;
-    startTimer(frameNumber);
+    if (frameNumber >= 2 && frameNumber <= 6) {
+        startTimer(frameNumber);
+    } else {
+        timerElement.style.display = 'none'; // Hide timer for frames that don't need it
+    }
 }
 
 // Function to handle swipe left actions
@@ -70,7 +74,7 @@ function startTimer(frameNumber) {
             }
         }, 1000);
     } else {
-        timerElement.style.backgroundImage = ''; // Clear timer for frames that don't have a timer
+        timerElement.style.display = 'none'; // Hide timer for frames that don't need it
     }
 }
 
@@ -87,8 +91,8 @@ function clearTimer() {
     timerElement.style.backgroundImage = ''; // Clear timer display
 }
 
-// Event listeners for buttons and swipe actions
-document.getElementById('start-button').addEventListener('click', () => {
+// Event listeners for starting the quiz
+document.getElementById('main-gif').addEventListener('click', () => {
     showFrame(2);
 });
 
@@ -107,7 +111,8 @@ document.querySelectorAll('.swipe-option').forEach(element => {
     });
 });
 
-document.getElementById('restart-button').addEventListener('click', () => {
+// Event listener for clicking on result image to restart the quiz
+document.getElementById('result-image').addEventListener('click', () => {
     showFrame(1);
 });
 
