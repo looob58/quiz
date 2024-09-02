@@ -113,13 +113,13 @@ document.getElementById('restart-button').addEventListener('click', () => {
 
 // Function to show result based on the answers
 function showResult() {
-    const resultText = document.getElementById('result-text');
+    const resultImage = document.getElementById('result-image');
     if (selectedAnswers.question2 === 'left' && selectedAnswers.question4 === 'left') {
-        resultText.textContent = "You got Result 1";
+        resultImage.src = 'a1.jpg';  // Replace with your result images
     } else if (selectedAnswers.question2 === 'right' && selectedAnswers.question4 === 'right') {
-        resultText.textContent = "You got Result 4";
+        resultImage.src = 'a4.jpg';  // Replace with your result images
     } else {
-        resultText.textContent = "You got a mixed result!";
+        resultImage.src = 'a3.jpg';  // Default or mixed result
     }
     showFrame(8);
     setTimeout(() => {
