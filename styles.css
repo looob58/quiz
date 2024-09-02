@@ -8,6 +8,7 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
+    overflow: hidden; /* Prevent scrollbars */
 }
 
 .quiz-frame {
@@ -16,6 +17,7 @@ body, html {
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    position: relative; /* Ensure frames are positioned correctly */
 }
 
 .top-portion {
@@ -24,31 +26,55 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #333;
-}
-
-.top-portion img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    background-image: url('hdr.jpg'); /* Set the top portion image */
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
 }
 
 .bottom-portion {
     height: 1280px;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #444;
 }
 
-.full-image {
+.swipe-options {
+    display: flex;
     width: 100%;
+    justify-content: space-between;
+}
+
+.swipe-option {
+    width: 48%;
     height: 100%;
-    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #777;
+}
+
+.left-option {
+    background-color: #ff5757;
+}
+
+.right-option {
+    background-color: #57a5ff;
 }
 
 .centered-button {
-    position: absolute;
-    bottom: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
+    position: relative; /* Ensure button is positioned correctly */
+    z-index: 10; /* Ensure button is above the timer */
 }
 
 button {
@@ -74,4 +100,5 @@ button {
     color: #fff;
     font-size: 48px;
     background-size: cover; /* To make the timer image cover the entire timer area */
+    z-index: 1; /* Ensure timer is below the button */
 }
