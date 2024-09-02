@@ -114,8 +114,14 @@ position:absolute;
   
 }
 
-#result-image {
+#result-image  {
     width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+#pending-image {
+  width: 100%;
     height: 100%;
     background-size: cover;
     background-position: center;
