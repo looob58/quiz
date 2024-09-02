@@ -71,6 +71,7 @@ function startTimer(frameNumber) {
         }, 1000);
     } else {
         timerElement.style.backgroundImage = ''; // Clear timer for frames that don't have a timer
+         timerElement.style.position='relative';
     }
 }
 
@@ -78,6 +79,7 @@ function startTimer(frameNumber) {
 function updateTimerImage(timeLeft) {
     if (timeLeft > 0 && timeLeft <= 5) {
         timerElement.style.backgroundImage = `url(${timerImages[timeLeft - 1]})`;
+timerElement.style.position='absolute';
     }
 }
 
@@ -85,6 +87,7 @@ function updateTimerImage(timeLeft) {
 function clearTimer() {
     clearInterval(timer);
     timerElement.style.backgroundImage = ''; // Clear timer display
+timerElement.style.position='relative';
 }
 // Event listeners for buttons and swipe actions
 document.getElementById('main-gif-container').addEventListener('click', () => {
