@@ -21,11 +21,7 @@ function showFrame(frameNumber) {
     });
     document.getElementById(`frame-${frameNumber}`).style.display = "flex";
     currentFrame = frameNumber;
-    if (frameNumber >= 2 && frameNumber <= 6) {
-        startTimer(frameNumber);
-    } else {
-        timerElement.style.display = 'none'; // Hide timer for frames that don't need it
-    }
+    startTimer(frameNumber);
 }
 
 // Function to handle swipe left actions
@@ -74,7 +70,7 @@ function startTimer(frameNumber) {
             }
         }, 1000);
     } else {
-        timerElement.style.display = 'none'; // Hide timer for frames that don't need it
+        timerElement.style.backgroundImage = ''; // Clear timer for frames that don't have a timer
     }
 }
 
@@ -91,8 +87,8 @@ function clearTimer() {
     timerElement.style.backgroundImage = ''; // Clear timer display
 }
 
-// Event listeners for starting the quiz
-document.getElementById('main-gif').addEventListener('click', () => {
+// Event listeners for buttons and swipe actions
+document.getElementById('start-button').addEventListener('click', () => {
     showFrame(2);
 });
 
@@ -111,8 +107,7 @@ document.querySelectorAll('.swipe-option').forEach(element => {
     });
 });
 
-// Event listener for clicking on result image to restart the quiz
-document.getElementById('result-image').addEventListener('click', () => {
+document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(1);
 });
 
