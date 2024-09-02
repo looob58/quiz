@@ -8,65 +8,70 @@ body, html {
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
-    overflow: hidden; /* Prevent scrollbars */
 }
 
 .quiz-frame {
-    display: flex;
+    display: none;
     flex-direction: column;
-    justify-content: flex-start; /* Align items to start to avoid extra space */
     width: 100%;
     height: 100%;
-    position: relative; /* Ensure frames are positioned correctly */
 }
 
 .top-portion {
     height: 530px;
-    background-image: url('hdr.jpg'); /* Set the top portion image */
-    background-size: cover; /* Cover the entire area */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Ensure the image does not repeat */
+    background-color: #333;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    background-image: url('hdr.jpg');
+    background-size: cover;
 }
 
 .bottom-portion {
-    flex: 1; /* Take up the remaining space */
+    height: 1280px;
+    background-color: #444;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    background-size: cover; /* Ensure background image covers the area */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Ensure the image does not repeat */
-    margin: 0; /* Ensure no extra space */
-    padding: 0; /* Ensure no extra space */
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
-.bottom-portion.frame-2 {
-    background-image: url('q1_bg.jpg'); /* Background image for Question 1 */
+.swipe-options {
+    width: 100%;
+    height: calc(100% - 110px); /* Adjust for the timer height */
+    display: flex;
+    justify-content: space-between;
 }
 
-.bottom-portion.frame-3 {
-    background-image: url('q2_bg.jpg'); /* Background image for Question 2 */
+.swipe-option {
+    width: 48%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-.bottom-portion.frame-4 {
-    background-image: url('q3_bg.jpg'); /* Background image for Question 3 */
+.left-option {
+    background-color: rgba(255, 87, 87, 0.7);
 }
 
-.bottom-portion.frame-5 {
-    background-image: url('q4_bg.jpg'); /* Background image for Question 4 */
-}
-
-.bottom-portion.frame-6 {
-    background-image: url('q5_bg.jpg'); /* Background image for Question 5 */
+.right-option {
+    background-color: rgba(87, 165, 255, 0.7);
 }
 
 .centered-button {
     width: 100%;
     display: flex;
     justify-content: center;
-    position: absolute; /* Position button at the bottom of the bottom portion */
-    bottom: 20px; /* Ensure it's above the timer */
-    z-index: 10; /* Ensure button is above the timer */
+    position: absolute;
+    bottom: 20px;
 }
 
 button {
@@ -91,6 +96,12 @@ button {
     align-items: center;
     color: #fff;
     font-size: 48px;
-    background-size: cover; /* To make the timer image cover the entire timer area */
-    z-index: 1; /* Ensure timer is below the button */
+    background-size: cover;
+}
+
+#result-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
 }
