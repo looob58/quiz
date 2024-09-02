@@ -60,11 +60,11 @@ body, html {
 }
 
 .left-option {
-    
+    background-color: #ff5757;
 }
 
 .right-option {
-   
+    background-color: #57a5ff;
 }
 
 .centered-button {
@@ -107,4 +107,9 @@ button {
     background-size: cover;
     background-position: center;
     cursor: pointer;
+}
+
+/* Hide timer for specific frames */
+.no-timer .timer {
+    display: none;
 }
