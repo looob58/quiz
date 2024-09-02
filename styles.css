@@ -105,3 +105,13 @@ button {
     background-size: cover;
     background-position: center;
 }
+
+#main-gif-container {
+    cursor: pointer;
+}
+
+#main-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
