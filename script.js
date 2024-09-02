@@ -86,7 +86,7 @@ function updateTimerImage(timeLeft) {
     if (timeLeft > 0 && timeLeft <= 5) {
         timerElement.style.backgroundImage = `url(${timerImages[timeLeft - 1]})`;
 timerElement.style.position='absolute';
-            timerElement.style.display='';
+            timerElement.style.display='flex';
     }
 }
 
