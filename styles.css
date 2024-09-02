@@ -29,6 +29,14 @@ img{
     text-align: center;
     background-image: url('hdr.jpg');
     background-size: cover;
+     background-color: #444;
+    background-repeat: no-repeat;
+    background-position: center;
+ display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 .bottom-full{
     height:100%!important;
