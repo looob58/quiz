@@ -46,23 +46,23 @@ body, html {
 }
 
 .bottom-portion.frame-2 {
-    background-image: url('q1-bg.jpg'); /* Background image for Question 1 */
+    background-image: url('q1_bg.jpg'); /* Background image for Question 1 */
 }
 
 .bottom-portion.frame-3 {
-    background-image: url('q2-bg.jpg'); /* Background image for Question 2 */
+    background-image: url('q2_bg.jpg'); /* Background image for Question 2 */
 }
 
 .bottom-portion.frame-4 {
-    background-image: url('q3-bg.jpg'); /* Background image for Question 3 */
+    background-image: url('q3_bg.jpg'); /* Background image for Question 3 */
 }
 
 .bottom-portion.frame-5 {
-    background-image: url('q4-bg.jpg'); /* Background image for Question 4 */
+    background-image: url('q4_bg.jpg'); /* Background image for Question 4 */
 }
 
 .bottom-portion.frame-6 {
-    background-image: url('q5-bg.jpg'); /* Background image for Question 5 */
+    background-image: url('q5_bg.jpg'); /* Background image for Question 5 */
 }
 
 .centered-button {
