@@ -92,20 +92,20 @@ document.getElementById('start-button').addEventListener('click', () => {
     showFrame(2);
 });
 
-document.getElementById('swipe-left-2').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-2').addEventListener('click', handleSwipeRight);
+// Event listeners for swipe options with click detection
+document.querySelectorAll('.swipe-option').forEach(element => {
+    element.addEventListener('click', (event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const clickX = event.clientX;
 
-document.getElementById('swipe-left-3').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-3').addEventListener('click', handleSwipeRight);
-
-document.getElementById('swipe-left-4').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-4').addEventListener('click', handleSwipeRight);
-
-document.getElementById('swipe-left-5').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-5').addEventListener('click', handleSwipeRight);
-
-document.getElementById('swipe-left-6').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-6').addEventListener('click', handleSwipeRight);
+        if (clickX < centerX) {
+            handleSwipeLeft();
+        } else {
+            handleSwipeRight();
+        }
+    });
+});
 
 document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(1);
@@ -114,13 +114,17 @@ document.getElementById('restart-button').addEventListener('click', () => {
 // Function to show result based on the answers
 function showResult() {
     const resultImage = document.getElementById('result-image');
+    
     if (selectedAnswers.question2 === 'left' && selectedAnswers.question4 === 'left') {
-        resultImage.src = 'a1.jpg';  // Replace with your result images
+        resultImage.style.backgroundImage = "url('a1.jpg')";
     } else if (selectedAnswers.question2 === 'right' && selectedAnswers.question4 === 'right') {
-        resultImage.src = 'a4.jpg';  // Replace with your result images
+        resultImage.style.backgroundImage = "url('a4.jpg')";
+    } else if (selectedAnswers.question2 === 'left') {
+        resultImage.style.backgroundImage = "url('a2.jpg')";
     } else {
-        resultImage.src = 'a3.jpg';  // Default or mixed result
+        resultImage.style.backgroundImage = "url('a3.jpg')";
     }
+    
     showFrame(8);
     setTimeout(() => {
         showFrame(1);
