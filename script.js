@@ -19,18 +19,8 @@ function showFrame(frameNumber) {
     document.querySelectorAll('.quiz-frame').forEach(frame => {
         frame.style.display = "none";
     });
-
-    let frame = document.getElementById(`frame-${frameNumber}`);
-    frame.style.display = "flex";
+    document.getElementById(frame-${frameNumber}).style.display = "flex";
     currentFrame = frameNumber;
-
-    // Determine if the timer should be displayed
-    if ([1, 7, 8].includes(frameNumber)) {
-        frame.classList.add('no-timer');
-    } else {
-        frame.classList.remove('no-timer');
-    }
-
     startTimer(frameNumber);
 }
 
@@ -87,7 +77,7 @@ function startTimer(frameNumber) {
 // Function to update the timer image
 function updateTimerImage(timeLeft) {
     if (timeLeft > 0 && timeLeft <= 5) {
-        timerElement.style.backgroundImage = `url(${timerImages[timeLeft - 1]})`;
+        timerElement.style.backgroundImage = url(${timerImages[timeLeft - 1]});
     }
 }
 
@@ -102,41 +92,43 @@ document.getElementById('start-button').addEventListener('click', () => {
     showFrame(2);
 });
 
-document.getElementById('swipe-left-2').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-2').addEventListener('click', handleSwipeRight);
+// Event listeners for swipe options with click detection
+document.querySelectorAll('.swipe-option').forEach(element => {
+    element.addEventListener('click', (event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const clickX = event.clientX;
 
-document.getElementById('swipe-left-3').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-3').addEventListener('click', handleSwipeRight);
-
-document.getElementById('swipe-left-4').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-4').addEventListener('click', handleSwipeRight);
-
-document.getElementById('swipe-left-5').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-5').addEventListener('click', handleSwipeRight);
-
-document.getElementById('swipe-left-6').addEventListener('click', handleSwipeLeft);
-document.getElementById('swipe-right-6').addEventListener('click', handleSwipeRight);
-
-document.getElementById('restart-button').addEventListener('click', () => {
-    showFrame(1);
+        if (clickX < centerX) {
+            handleSwipeLeft();
+        } else {
+            handleSwipeRight();
+        }
+    });
 });
 
-document.getElementById('result-image').addEventListener('click', () => {
+document.getElementById('restart-button').addEventListener('click', () => {
     showFrame(1);
 });
 
 // Function to show result based on the answers
 function showResult() {
     const resultImage = document.getElementById('result-image');
+    
     if (selectedAnswers.question2 === 'left' && selectedAnswers.question4 === 'left') {
         resultImage.style.backgroundImage = "url('a1.jpg')";
     } else if (selectedAnswers.question2 === 'right' && selectedAnswers.question4 === 'right') {
+        resultImage.style.backgroundImage = "url('a4.jpg')";
+    } else if (selectedAnswers.question2 === 'left') {
         resultImage.style.backgroundImage = "url('a2.jpg')";
     } else {
         resultImage.style.backgroundImage = "url('a3.jpg')";
     }
+    
     showFrame(8);
-    // Timer for frame 8 is handled by CSS class `no-timer`
+    setTimeout(() => {
+        showFrame(1);
+    }, 120000);  // 2 minutes timer to go back to the main page
 }
 
 // Function to detect swipe gestures
