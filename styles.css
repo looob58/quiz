@@ -29,7 +29,7 @@ body, html {
 
 .bottom-portion {
 
-    height: 1280px;
+    height: 1390px;
     background-color: #444;
     background-size: cover;
     background-repeat: no-repeat;
@@ -40,11 +40,7 @@ body, html {
     align-items: center;
     position: relative;
 }
-.bottom-portion.frame-7,
-.bottom-portion.frame-8 {
-    height: 1390px; /* Adjusted height for frames 7 and 8 */
-  
-}
+
 
 .swipe-options {
     width: 100%;
@@ -91,9 +87,7 @@ button {
 }
 
 .timer {
- position: absolute; 
-    bottom: 0;
-    left: 0;
+
     width: 100%;
     height: 110px;
     background-color: #222;
