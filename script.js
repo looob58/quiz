@@ -69,6 +69,17 @@ function startTimer(frameNumber) {
                 handleSwipeRight();
             }
         }, 1000);
+    } else if (frameNumber === 8) {
+        // Frame 8 timer to return to frame 1 after 2 minutes
+        let timeLeft = 120;
+        timerElement.style.backgroundImage = ''; // Clear timer display
+        timer = setInterval(() => {
+            timeLeft--;
+            if (timeLeft <= 0) {
+                clearTimer();
+                showFrame(1);
+            }
+        }, 1000);
     } else {
         timerElement.style.backgroundImage = ''; // Clear timer for frames that don't have a timer
     }
@@ -88,8 +99,12 @@ function clearTimer() {
 }
 
 // Event listeners for buttons and swipe actions
-document.getElementById('start-button').addEventListener('click', () => {
+document.getElementById('start-quiz').addEventListener('click', () => {
     showFrame(2);
+});
+
+document.getElementById('restart-button')?.addEventListener('click', () => {
+    showFrame(1);
 });
 
 // Event listeners for swipe options with click detection
@@ -105,10 +120,10 @@ document.querySelectorAll('.swipe-option').forEach(element => {
             handleSwipeRight();
         }
     });
-});
 
-document.getElementById('restart-button').addEventListener('click', () => {
-    showFrame(1);
+    // Add touch event listeners for swipe actions
+    element.addEventListener('touchstart', handleTouchStart);
+    element.addEventListener('touchend', handleTouchEnd);
 });
 
 // Function to show result based on the answers
@@ -126,9 +141,6 @@ function showResult() {
     }
     
     showFrame(8);
-    setTimeout(() => {
-        showFrame(1);
-    }, 120000);  // 2 minutes timer to go back to the main page
 }
 
 // Function to detect swipe gestures
@@ -146,12 +158,6 @@ function handleTouchEnd(event) {
         handleSwipeRight();
     }
 }
-
-// Add touch event listeners
-document.querySelectorAll('.swipe-option').forEach(element => {
-    element.addEventListener('touchstart', handleTouchStart);
-    element.addEventListener('touchend', handleTouchEnd);
-});
 
 // Initialize the quiz by showing the welcome screen
 showFrame(1);
