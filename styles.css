@@ -39,6 +39,10 @@ body, html {
     align-items: center;
     position: relative;
 }
+.bottom-portion.frame-7,
+.bottom-portion.frame-8 {
+    height: 1390px; /* Adjusted height for frames 7 and 8 */
+}
 
 .swipe-options {
     width: 100%;
