@@ -2,8 +2,16 @@ let currentFrame = 1;
 let selectedAnswers = {};
 let timer;
 let timerElement = document.getElementById('timer');
-
 let touchStartX = 0;
+
+// Images for timer countdown (replace these with your actual image paths)
+const timerImages = [
+    'image1.jpg',  // Replace with actual image paths
+    'image2.jpg',
+    'image3.jpg',
+    'image4.jpg',
+    'image5.jpg'
+];
 
 // Function to show a specific frame
 function showFrame(frameNumber) {
@@ -52,24 +60,31 @@ function analyzeResults() {
 function startTimer(frameNumber) {
     if (frameNumber >= 2 && frameNumber <= 6) {
         let timeLeft = 5;
-        timerElement.textContent = timeLeft;
+        updateTimerImage(timeLeft);
         timer = setInterval(() => {
             timeLeft--;
-            timerElement.textContent = timeLeft;
+            updateTimerImage(timeLeft);
             if (timeLeft <= 0) {
                 clearTimer();
-                handleSwipeRight() ;
+                handleSwipeRight();
             }
         }, 1000);
     } else {
-        timerElement.textContent = ''; // Clear timer for frames that don't have a timer
+        timerElement.style.backgroundImage = ''; // Clear timer for frames that don't have a timer
+    }
+}
+
+// Function to update the timer image
+function updateTimerImage(timeLeft) {
+    if (timeLeft > 0 && timeLeft <= 5) {
+        timerElement.style.backgroundImage = `url(${timerImages[timeLeft - 1]})`;
     }
 }
 
 // Function to clear the timer
 function clearTimer() {
     clearInterval(timer);
-    timerElement.textContent = ''; // Clear timer display
+    timerElement.style.backgroundImage = ''; // Clear timer display
 }
 
 // Event listeners for buttons and swipe actions
