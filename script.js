@@ -26,9 +26,11 @@ function showFrame(frameNumber) {
 
 // Function to handle swipe left actions
 function handleSwipeLeft() {
-    if (currentFrame === 3) selectedAnswers.question2 = "left";
-    if (currentFrame === 5) selectedAnswers.question4 = "left";
-    
+  if (currentFrame === 2) selectedAnswers.question1 = "A";
+    if (currentFrame === 3) selectedAnswers.question2 = "A";
+     if (currentFrame === 4) selectedAnswers.question3 = "A";
+    if (currentFrame === 5) selectedAnswers.question4 = "A";
+     if (currentFrame === 6) selectedAnswers.question5 = "A";
     if (currentFrame === 6) {
         analyzeResults();
     } else {
@@ -38,9 +40,12 @@ function handleSwipeLeft() {
 
 // Function to handle swipe right actions
 function handleSwipeRight() {
-    if (currentFrame === 3) selectedAnswers.question2 = "right";
-    if (currentFrame === 5) selectedAnswers.question4 = "right";
-
+   
+    if (currentFrame === 2) selectedAnswers.question1 = "B";
+    if (currentFrame === 3) selectedAnswers.question2 = "B";
+     if (currentFrame === 4) selectedAnswers.question3 = "B";
+    if (currentFrame === 5) selectedAnswers.question4 = "B";
+     if (currentFrame === 6) selectedAnswers.question5 = "B";
     if (currentFrame === 6) {
         analyzeResults();
     } else {
@@ -118,16 +123,105 @@ document.getElementById('result-image').addEventListener('click', () => {
 // Function to show result based on the answers
 function showResult() {
     const resultImage = document.getElementById('result-image');
-    
-    if (selectedAnswers.question2 === 'left' && selectedAnswers.question4 === 'left') {
-        resultImage.style.backgroundImage = "url('a1.jpg')";
-    } else if (selectedAnswers.question2 === 'right' && selectedAnswers.question4 === 'right') {
-        resultImage.style.backgroundImage = "url('a4.jpg')";
-    } else if (selectedAnswers.question2 === 'left') {
-        resultImage.style.backgroundImage = "url('a2.jpg')";
-    } else {
-        resultImage.style.backgroundImage = "url('a3.jpg')";
-    }
+    var resulttext;
+     if (resultext ==='ABAAA') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='ABAAB') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='ABABA') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='ABABB') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='BBAAA') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='BBAAB') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='BBABA') {
+         resultImage.style.backgroundImage = "url('a1.jpg')";
+   }
+  if (resultext ==='BBABB') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AAAAA') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AAAAB') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AAABA') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AAABB') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AABAA') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AABAB') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AABBA') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='AABBB') {
+         resultImage.style.backgroundImage = "url('a2.jpg')";
+   }
+  if (resultext ==='BAAAA') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BAAAB') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BAABA') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BAABB') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BABAA') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BABAB') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BABBA') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='BABBB') {
+         resultImage.style.backgroundImage = "url('a3.jpg')";
+   }
+  if (resultext ==='ABBAA') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='ABBAB') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='ABBBA') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='ABBBB') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='BBBAA') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='BBBAB') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='BBBBA') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+  if (resultext ==='BBBBB') {
+         resultImage.style.backgroundImage = "url('a4.jpg')";
+   }
+
+
     
     showFrame(8);
     setTimeout(() => {
