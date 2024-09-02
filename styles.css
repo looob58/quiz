@@ -9,9 +9,7 @@ body, html {
     align-items: center;
     background-color: #f4f4f4;
 }
-img {
-  width: 100%;
-}
+
 .quiz-frame {
     display: none;
     flex-direction: column;
