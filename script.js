@@ -86,11 +86,12 @@ function clearTimer() {
     clearInterval(timer);
     timerElement.style.backgroundImage = ''; // Clear timer display
 }
-
 // Event listeners for buttons and swipe actions
-document.getElementById('start-button').addEventListener('click', () => {
+document.getElementById('main-gif-container').addEventListener('click', () => {
     showFrame(2);
 });
+
+
 
 // Event listeners for swipe options with click detection
 document.querySelectorAll('.swipe-option').forEach(element => {
