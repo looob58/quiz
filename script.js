@@ -123,7 +123,9 @@ document.getElementById('result-image').addEventListener('click', () => {
 // Function to show result based on the answers
 function showResult() {
     const resultImage = document.getElementById('result-image');
-    var resulttext;
+    var resultext;
+    resultext= selectedAnswers.question1 & selectedAnswers.question2  & selectedAnswers.question3 & selectedAnswers.question4 & selectedAnswers.question5;
+    
      if (resultext ==='ABAAA') {
          resultImage.style.backgroundImage = "url('a1.jpg')";
    }
