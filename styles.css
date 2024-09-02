@@ -5,40 +5,47 @@ body, html {
     height: 100%;
     font-family: Arial, sans-serif;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
 }
 
 .quiz-frame {
     display: none;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
 }
 
 .top-portion {
-    height: 33%;
+    height: 530px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #333;
     color: #fff;
+    font-size: 24px;
+    text-align: center;
 }
 
 .bottom-portion {
-    height: 67%;
+    height: 1280px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #444;
+    padding: 20px;
 }
 
 .swipe-options {
     display: flex;
     width: 100%;
-    height: 100%;
+    justify-content: space-between;
 }
 
 .swipe-option {
-    width: 50%;
+    width: 48%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -46,6 +53,7 @@ body, html {
     color: #fff;
     font-size: 24px;
     cursor: pointer;
+    background-color: #777;
 }
 
 .left-option {
@@ -57,29 +65,32 @@ body, html {
 }
 
 .centered-button {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
 }
 
-.centered-button button {
+button {
     background-color: #4CAF50;
     color: white;
-    padding: 15px;
+    padding: 15px 30px;
     border: none;
     font-size: 18px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .timer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
-    background-color: #000;
+    height: 110px;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
-    text-align: center;
-    font-size: 24px;
-    padding: 10px;
+    font-size: 48px;
+    background-size: cover; /* To make the timer image cover the entire timer area */
 }
