@@ -129,11 +129,11 @@ document.getElementById('result-image').addEventListener('click', () => {
 function showResult() {
     const resultImage = document.getElementById('result-image');
     if (selectedAnswers.question2 === 'left' && selectedAnswers.question4 === 'left') {
-        resultImage.style.backgroundImage = "url('result1.jpg')";
+        resultImage.style.backgroundImage = "url('a1.jpg')";
     } else if (selectedAnswers.question2 === 'right' && selectedAnswers.question4 === 'right') {
-        resultImage.style.backgroundImage = "url('result4.jpg')";
+        resultImage.style.backgroundImage = "url('a2.jpg')";
     } else {
-        resultImage.style.backgroundImage = "url('result-mixed.jpg')";
+        resultImage.style.backgroundImage = "url('a3.jpg')";
     }
     showFrame(8);
     // Timer for frame 8 is handled by CSS class `no-timer`
